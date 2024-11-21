@@ -1,0 +1,54 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model MenuItem {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  category    String
+  image       String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  OrderItem   OrderItem[]
+  Feedback    Feedback[]
+}
+
+model Order {
+  id        String      @id @default(cuid())
+  items     OrderItem[]
+  total     Float
+  status    String      @default("pending")
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Feedback  Feedback[]
+}
+
+model OrderItem {
+  id         String   @id @default(cuid())
+  quantity   Int
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  menuItemId String
+  order      Order    @relation(fields: [orderId], references: [id])
+  orderId    String
+}
+
+model Feedback {
+  id         String   @id @default(cuid())
+  menuItemId String
+  orderId    String
+  rating     Int
+  comment    String?
+  createdAt  DateTime @default(now())
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  order      Order    @relation(fields: [orderId], references: [id])
+}
