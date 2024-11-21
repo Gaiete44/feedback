@@ -1,4 +1,3 @@
-// app/(routes)/menu/page.tsx
 'use client'
 
 import { useState, useEffect } from 'react';
@@ -33,14 +32,16 @@ export default function MenuPage() {
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-semibold">Menu</h1>
+            <h1 className="text-2xl font-semibold">Our Menu</h1>
             <Cart />
           </div>
           <div className="mt-4">
             <CategoryTabs
               categories={categories}
               activeCategory={activeCategory}
-              onSelectCategory={setActiveCategory}
+              onSelectCategory={(value: string) => {
+                setActiveCategory(value as 'TAPAS');
+              }}
             />
           </div>
         </div>

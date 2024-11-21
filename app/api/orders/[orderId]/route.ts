@@ -1,14 +1,18 @@
 // app/api/orders/[orderId]/route.ts
 import { prisma } from '@/app/_lib/db';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
-  request: Request,
-  { params }: { params: { orderId: string } }
+  req: NextRequest,
+  context: { params: { orderId: string } }
 ) {
+  const orderId = await Promise.resolve(context.params.orderId);
+
   try {
     const order = await prisma.order.findUnique({
-      where: { id: params.orderId },
+      where: { 
+        id: orderId 
+      },
       include: {
         items: {
           include: {
@@ -19,12 +23,18 @@ export async function GET(
     });
 
     if (!order) {
-      return NextResponse.json({ error: 'Order not found' }, { status: 404 });
+      return NextResponse.json(
+        { error: 'Order not found' }, 
+        { status: 404 }
+      );
     }
 
     return NextResponse.json(order);
   } catch (err) {
     console.error('Failed to fetch order:', err);
-    return NextResponse.json({ error: 'Failed to fetch order' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to fetch order' }, 
+      { status: 500 }
+    );
   }
 }
