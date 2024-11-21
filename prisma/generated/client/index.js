@@ -190,13 +190,13 @@ const config = {
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": "POSTGRES_PRISMA_URL",
+        "fromEnvVar": "DATABASE_URL",
         "value": null
       }
     }
   },
-  "inlineSchema": "// prisma/schema.prisma\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"POSTGRES_PRISMA_URL\")\n  directUrl = env(\"POSTGRES_URL_NON_POOLING\")\n}\n\nmodel MenuItem {\n  id          String      @id @default(cuid())\n  name        String\n  description String\n  price       Float\n  category    String\n  image       String\n  createdAt   DateTime    @default(now())\n  updatedAt   DateTime    @updatedAt\n  OrderItem   OrderItem[]\n  Feedback    Feedback[]\n}\n\nmodel Order {\n  id        String      @id @default(cuid())\n  items     OrderItem[]\n  total     Float\n  status    String      @default(\"pending\")\n  createdAt DateTime    @default(now())\n  updatedAt DateTime    @updatedAt\n  Feedback  Feedback[]\n}\n\nmodel OrderItem {\n  id         String   @id @default(cuid())\n  quantity   Int\n  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])\n  menuItemId String\n  order      Order    @relation(fields: [orderId], references: [id])\n  orderId    String\n}\n\nmodel Feedback {\n  id         String   @id @default(cuid())\n  menuItemId String\n  orderId    String\n  rating     Int\n  comment    String?\n  createdAt  DateTime @default(now())\n  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])\n  order      Order    @relation(fields: [orderId], references: [id])\n}\n",
-  "inlineSchemaHash": "67f90c70e9f4268c3c638f3dcf960690e7b32a76b8c8620fb51e0f2bfa383113",
+  "inlineSchema": "// prisma/schema.prisma\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\n// prisma/schema.prisma\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel MenuItem {\n  id          String      @id @default(cuid())\n  name        String\n  description String\n  price       Float\n  category    String\n  image       String\n  createdAt   DateTime    @default(now())\n  updatedAt   DateTime    @updatedAt\n  OrderItem   OrderItem[]\n  Feedback    Feedback[]\n}\n\nmodel Order {\n  id        String      @id @default(cuid())\n  items     OrderItem[]\n  total     Float\n  status    String      @default(\"pending\")\n  createdAt DateTime    @default(now())\n  updatedAt DateTime    @updatedAt\n  Feedback  Feedback[]\n}\n\nmodel OrderItem {\n  id         String   @id @default(cuid())\n  quantity   Int\n  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])\n  menuItemId String\n  order      Order    @relation(fields: [orderId], references: [id])\n  orderId    String\n}\n\nmodel Feedback {\n  id         String   @id @default(cuid())\n  menuItemId String\n  orderId    String\n  rating     Int\n  comment    String?\n  createdAt  DateTime @default(now())\n  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])\n  order      Order    @relation(fields: [orderId], references: [id])\n}\n",
+  "inlineSchemaHash": "493f9af9d63d13fd965333568cc399922ca32f4f3fc785d6c89295c23ec1bffb",
   "copyEngine": true
 }
 
