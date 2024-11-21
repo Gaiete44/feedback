@@ -11,3 +11,11 @@ export interface MenuItem {
   export interface CartItem extends MenuItem {
     quantity: number;
   }
+
+  export interface FeedbackItem {
+    id: string;
+    menuItemId: string;
+    rating: number;
+    comment?: string;
+    orderId: string;
+  }

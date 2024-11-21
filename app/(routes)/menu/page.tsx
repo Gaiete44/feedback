@@ -2,7 +2,6 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { prisma } from '@/app/_lib/db';
 import { MenuCard } from '@/app/_components/MenuCard';
 import { CategoryTabs } from '@/app/_components/CategoryTabs';
 import { Cart } from '@/app/_components/Cart';
