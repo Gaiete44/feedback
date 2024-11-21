@@ -55,7 +55,12 @@ export default function ChefDashboard() {
     <div className="max-w-7xl mx-auto p-6">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Chef&apos;s Dashboard</h1>
-        <Tabs.Root value={timeFilter} onValueChange={(value: 'day' | 'week' | 'month' | 'all') => setTimeFilter(value)}>
+        <Tabs.Root 
+  value={timeFilter} 
+  onValueChange={(value: string) => {
+    setTimeFilter(value as 'day' | 'week' | 'month' | 'all');
+  }}
+>
           <Tabs.List className="flex gap-2">
             <Tabs.Trigger
               value="day"

@@ -1,4 +1,3 @@
-// app/api/feedback/summary/route.ts
 import { prisma } from '@/app/_lib/db';
 import { NextResponse } from 'next/server';
 
@@ -9,7 +8,7 @@ interface FeedbackSummary {
   comments: {
     rating: number;
     comment: string;
-    date: string;
+    date: Date | string;  // Allow both Date and string types
   }[];
 }
 
@@ -17,29 +16,23 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const timeFilter = searchParams.get('timeFilter') || 'all';
 
-  let dateFilter = {};
+  const dateFilter: Record<string, any> = {};  // Type the dateFilter object
   const now = new Date();
 
   switch (timeFilter) {
     case 'day':
-      dateFilter = {
-        createdAt: {
-          gte: new Date(now.setHours(0, 0, 0, 0))
-        }
+      dateFilter.createdAt = {
+        gte: new Date(now.setHours(0, 0, 0, 0))
       };
       break;
     case 'week':
-      dateFilter = {
-        createdAt: {
-          gte: new Date(now.setDate(now.getDate() - 7))
-        }
+      dateFilter.createdAt = {
+        gte: new Date(now.setDate(now.getDate() - 7))
       };
       break;
     case 'month':
-      dateFilter = {
-        createdAt: {
-          gte: new Date(now.setMonth(now.getMonth() - 1))
-        }
+      dateFilter.createdAt = {
+        gte: new Date(now.setMonth(now.getMonth() - 1))
       };
       break;
   }
@@ -57,7 +50,7 @@ export async function GET(request: Request) {
 
     const aggregated = feedback.reduce<FeedbackSummary[]>((acc, curr) => {
       const existing = acc.find(item => item.itemName === curr.menuItem.name);
-      
+
       if (existing) {
         existing.totalRatings++;
         existing.averageRating = (
