@@ -4,9 +4,9 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   req: NextRequest,
-  context: { params: { orderId: string } }
+  context: { params: Promise<{ orderId: string }> }
 ) {
-  const orderId = await Promise.resolve(context.params.orderId);
+  const orderId = await Promise.resolve((await context.params).orderId);
 
   try {
     const order = await prisma.order.findUnique({
