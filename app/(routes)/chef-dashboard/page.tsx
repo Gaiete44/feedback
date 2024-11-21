@@ -4,22 +4,22 @@
 import { useState, useEffect } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 
-interface FeedbackData {
-  id: string;
+interface MenuItem {
+  name: string;
+  category: string;
+}
+
+interface FeedbackComment {
   rating: number;
   comment: string;
-  createdAt: string;
-  menuItem: {
-    name: string;
-    category: string;
-  }
+  date: string;
 }
 
 interface AggregatedFeedback {
   itemName: string;
   averageRating: number;
   totalRatings: number;
-  comments: { rating: number; comment: string; date: string }[];
+  comments: FeedbackComment[];
 }
 
 export default function ChefDashboard() {
@@ -54,8 +54,8 @@ export default function ChefDashboard() {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Chef's Dashboard</h1>
-        <Tabs.Root value={timeFilter} onValueChange={(value: any) => setTimeFilter(value)}>
+        <h1 className="text-3xl font-bold">Chef&apos;s Dashboard</h1>
+        <Tabs.Root value={timeFilter} onValueChange={(value: 'day' | 'week' | 'month' | 'all') => setTimeFilter(value)}>
           <Tabs.List className="flex gap-2">
             <Tabs.Trigger
               value="day"

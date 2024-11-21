@@ -2,6 +2,17 @@
 import { prisma } from '@/app/_lib/db';
 import { NextResponse } from 'next/server';
 
+interface FeedbackSummary {
+  itemName: string;
+  averageRating: number;
+  totalRatings: number;
+  comments: {
+    rating: number;
+    comment: string;
+    date: string;
+  }[];
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const timeFilter = searchParams.get('timeFilter') || 'all';
@@ -44,8 +55,7 @@ export async function GET(request: Request) {
       }
     });
 
-    // Aggregate feedback by menu item
-    const aggregated = feedback.reduce((acc, curr) => {
+    const aggregated = feedback.reduce<FeedbackSummary[]>((acc, curr) => {
       const existing = acc.find(item => item.itemName === curr.menuItem.name);
       
       if (existing) {
@@ -75,11 +85,11 @@ export async function GET(request: Request) {
       }
       
       return acc;
-    }, [] as any[]);
+    }, []);
 
     return NextResponse.json(aggregated);
-  } catch (error) {
-    console.error('Failed to fetch feedback summary:', error);
+  } catch (err) {
+    console.error('Failed to fetch feedback summary:', err);
     return NextResponse.json({ error: 'Failed to fetch feedback' }, { status: 500 });
   }
 }
