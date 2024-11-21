@@ -1,3 +1,4 @@
+// app/api/feedback/summary/route.ts
 import { prisma } from '@/app/_lib/db';
 import { NextResponse } from 'next/server';
 
@@ -54,7 +55,7 @@ export async function GET(request: Request) {
       }
     });
 
-    const aggregated = feedback.reduce<FeedbackSummary[]>((acc, curr) => {
+    const aggregated = feedback.reduce((acc: FeedbackSummary[], curr) => {
       const existing = acc.find(item => item.itemName === curr.menuItem.name);
       
       if (existing) {
@@ -84,7 +85,7 @@ export async function GET(request: Request) {
       }
       
       return acc;
-    }, []);
+    }, [] as FeedbackSummary[]);
 
     return NextResponse.json(aggregated);
   } catch (err) {
