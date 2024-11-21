@@ -4,11 +4,6 @@
 import { useState, useEffect } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 
-interface MenuItem {
-  name: string;
-  category: string;
-}
-
 interface FeedbackComment {
   rating: number;
   comment: string;

@@ -23,7 +23,8 @@ export async function GET(
     }
 
     return NextResponse.json(order);
-  } catch (error) {
+  } catch (err) {
+    console.error('Failed to fetch order:', err);
     return NextResponse.json({ error: 'Failed to fetch order' }, { status: 500 });
   }
 }

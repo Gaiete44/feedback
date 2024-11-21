@@ -8,15 +8,21 @@ interface FeedbackSummary {
   comments: {
     rating: number;
     comment: string;
-    date: Date | string;  // Allow both Date and string types
+    date: Date | string;
   }[];
+}
+
+interface DateFilter {
+  createdAt?: {
+    gte: Date;
+  };
 }
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const timeFilter = searchParams.get('timeFilter') || 'all';
 
-  const dateFilter: Record<string, any> = {};  // Type the dateFilter object
+  const dateFilter: DateFilter = {};
   const now = new Date();
 
   switch (timeFilter) {
@@ -50,7 +56,7 @@ export async function GET(request: Request) {
 
     const aggregated = feedback.reduce<FeedbackSummary[]>((acc, curr) => {
       const existing = acc.find(item => item.itemName === curr.menuItem.name);
-
+      
       if (existing) {
         existing.totalRatings++;
         existing.averageRating = (
