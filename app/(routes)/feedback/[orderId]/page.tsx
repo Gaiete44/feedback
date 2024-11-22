@@ -190,8 +190,8 @@ export default function FeedbackPage() {
         <div className="space-y-8">
           <div className="text-center">
             <h2 className="text-2xl font-semibold mb-2">Thank You for Your Feedback!</h2>
-            <p className="text-gray-600 mb-8">Based on your ratings, we think you'll love these dishes:</p>
-          </div>
+            <p className="text-gray-600 mb-8">Based on your ratings, we think you&apos;ll love these dishes:</p>
+            </div>
 
           {loadingRecommendations ? (
             <div className="flex justify-center">

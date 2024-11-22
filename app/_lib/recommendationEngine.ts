@@ -1,18 +1,16 @@
 // app/_lib/recommendationEngine.ts
 import { prisma } from './db';
+import { MenuItem } from '@/app/_types/menu';
 
-interface OrderHistory {
-  menuItemId: string;
-  rating: number;
+interface RecommendationResult {
+  menuItem: MenuItem;
+  score: number;
+  reason: string;
 }
 
 export async function getPostFeedbackRecommendations(
   orderId: string
-): Promise<Array<{
-  menuItem: any;
-  score: number;
-  reason: string;
-}>> {
+): Promise<RecommendationResult[]> {
   try {
     // Get the current order's feedback and items
     const currentOrderFeedback = await prisma.feedback.findMany({
@@ -94,7 +92,7 @@ export async function getPostFeedbackRecommendations(
             menuItem: item,
             score,
             reason: reason || 'You might enjoy this',
-          };
+          } as RecommendationResult;
         })
     );
 
