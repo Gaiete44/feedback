@@ -137,7 +137,7 @@ export default function FeedbackPage() {
       {!showRecommendations ? (
         <>
           <h1 className="text-3xl font-joti text-terracotta-600 text-center mb-8">
-            ¿How was your food?
+            How was your food?
           </h1>
           
           <div className="space-y-8">
@@ -189,9 +189,9 @@ export default function FeedbackPage() {
       ) : (
         <div className="space-y-8">
           <div className="text-center">
-            <h2 className="text-3xl font-joti text-terracotta-600 mb-4">¡Gracias!</h2>
+            <h2 className="text-3xl font-joti text-terracotta-600 mb-4">Gracias!</h2>
             <p className="text-xl font-joti text-gray-600 mb-8">
-              Based on your taste, we think you'll love these:
+              Based on your taste, we think you&apos;ll love these:
             </p>
           </div>
 
