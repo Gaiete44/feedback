@@ -1,3 +1,4 @@
+// app/_components/CategoryTabs.tsx
 'use client'
 
 import * as Tabs from '@radix-ui/react-tabs';
@@ -9,17 +10,17 @@ export const CategoryTabs: React.FC<{
 }> = ({ categories, activeCategory, onSelectCategory }) => {
   return (
     <Tabs.Root value={activeCategory} onValueChange={onSelectCategory}>
-      <Tabs.List className="flex space-x-4 border-b border-gray-200">
+      <Tabs.List className="flex flex-wrap justify-center gap-4 p-4 bg-warmWhite shadow-inner">
         {categories.map((category) => (
           <Tabs.Trigger
             key={category}
             value={category}
-            className={`px-4 py-2 text-sm font-medium transition-colors
+            className={`px-6 py-2 font-joti text-lg rounded-full transition-all
               ${activeCategory === category 
-                ? 'text-orange-500 border-b-2 border-orange-500' 
-                : 'text-gray-500 hover:text-gray-700'}`}
+                ? 'bg-terracotta-600 text-white shadow-md transform scale-105' 
+                : 'text-terracotta-600 hover:bg-terracotta-50'}`}
           >
-            {category.toUpperCase()}
+            {category}
           </Tabs.Trigger>
         ))}
       </Tabs.List>

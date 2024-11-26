@@ -41,8 +41,6 @@ export default function FeedbackPage() {
   const [comments, setComments] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
-  // New states for recommendations
   const [showRecommendations, setShowRecommendations] = useState(false);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [loadingRecommendations, setLoadingRecommendations] = useState(false);
@@ -129,32 +127,34 @@ export default function FeedbackPage() {
   if (error) {
     return (
       <div className="max-w-2xl mx-auto p-6">
-        <div className="text-red-500 text-center p-4">{error}</div>
+        <div className="text-red-500 text-center p-4 font-joti">{error}</div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6 bg-warmWhite min-h-screen">
       {!showRecommendations ? (
         <>
-          <h1 className="text-2xl font-semibold mb-6">Order Feedback</h1>
+          <h1 className="text-3xl font-joti text-terracotta-600 text-center mb-8">
+            ¿How was your food?
+          </h1>
           
           <div className="space-y-8">
             {orderItems.map((item) => (
-              <div key={item.menuItemId} className="border rounded-lg p-4">
-                <h2 className="text-lg font-medium mb-2">{item.menuItem.name}</h2>
+              <div key={item.menuItemId} className="bg-white rounded-lg shadow-md p-6 border-l-4 border-terracotta-600">
+                <h2 className="text-xl font-joti text-terracotta-600 mb-4">{item.menuItem.name}</h2>
                 
-                <div className="mb-4">
-                  <div className="text-sm text-gray-500 mb-2">Rating</div>
+                <div className="mb-6">
+                  <div className="text-sm font-joti text-gray-600 mb-2">Your Rating</div>
                   <div className="flex gap-2">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         key={star}
                         onClick={() => handleRatingChange(item.menuItemId, star)}
-                        className={`text-2xl ${
+                        className={`text-3xl transform transition-transform hover:scale-110 ${
                           (ratings[item.menuItemId] || 0) >= star 
-                            ? 'text-orange-500' 
+                            ? 'text-marigold-500' 
                             : 'text-gray-300'
                         }`}
                       >
@@ -165,13 +165,13 @@ export default function FeedbackPage() {
                 </div>
                 
                 <div>
-                  <div className="text-sm text-gray-500 mb-2">Comments (optional)</div>
+                  <div className="text-sm font-joti text-gray-600 mb-2">Comments (optional)</div>
                   <textarea
                     value={comments[item.menuItemId] || ''}
                     onChange={(e) => handleCommentChange(item.menuItemId, e.target.value)}
-                    className="w-full p-2 border rounded-md"
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-terracotta-600 focus:border-transparent"
                     rows={3}
-                    placeholder="Share your thoughts about this dish..."
+                    placeholder="Tell us what you thought about this dish..."
                   />
                 </div>
               </div>
@@ -181,7 +181,7 @@ export default function FeedbackPage() {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="mt-6 w-full bg-orange-500 text-white py-2 rounded-full hover:bg-orange-600 disabled:opacity-50"
+            className="mt-8 w-full bg-jade-600 text-white py-3 rounded-full hover:bg-jade-700 transition-colors disabled:opacity-50 font-joti text-xl"
           >
             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
           </button>
@@ -189,31 +189,33 @@ export default function FeedbackPage() {
       ) : (
         <div className="space-y-8">
           <div className="text-center">
-            <h2 className="text-2xl font-semibold mb-2">Thank You for Your Feedback!</h2>
-            <p className="text-gray-600 mb-8">Based on your ratings, we think you&apos;ll love these dishes:</p>
-            </div>
+            <h2 className="text-3xl font-joti text-terracotta-600 mb-4">¡Gracias!</h2>
+            <p className="text-xl font-joti text-gray-600 mb-8">
+              Based on your taste, we think you'll love these:
+            </p>
+          </div>
 
           {loadingRecommendations ? (
             <div className="flex justify-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-terracotta-600"></div>
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {recommendations.map(({ menuItem, reason }) => (
                   <div key={menuItem.id} className="flex flex-col">
                     <MenuCard {...menuItem} />
-                    <p className="mt-2 text-sm text-gray-600 text-center italic">
+                    <p className="mt-2 text-sm text-gray-600 text-center font-joti italic">
                       {reason}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="flex justify-center space-x-4 mt-8">
+              <div className="flex justify-center mt-12">
                 <button
                   onClick={() => router.push('/menu')}
-                  className="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
+                  className="px-8 py-3 bg-terracotta-600 text-white rounded-full hover:bg-terracotta-700 transition-colors font-joti text-xl"
                 >
                   Back to Menu
                 </button>

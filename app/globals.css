@@ -1,39 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Joti+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground: #000000;
-  --background: #ffffff;
-  --primary: #ff4d00;
-  --primary-hover: #cc3d00;
-  --border: #e5e5e5;
-  --text-muted: #666666;
+@layer base {
+  body {
+    @apply bg-warmWhite font-sans text-gray-900;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-joti text-terracotta-600;
+  }
 }
 
-
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
-.text-primary {
-  color: var(--primary);
-}
-
-.bg-primary {
-  background-color: var(--primary);
-}
-
-.bg-primary:hover {
-  background-color: var(--primary-hover);
-}
-
-.border-color {
-  border-color: var(--border);
-}
-
-.text-muted {
-  color: var(--text-muted);
+@layer components {
+  .btn-primary {
+    @apply bg-terracotta-600 text-white px-6 py-2 rounded-full hover:bg-terracotta-700 transition-colors font-joti;
+  }
+  .btn-secondary {
+    @apply bg-jade-600 text-white px-6 py-2 rounded-full hover:bg-jade-700 transition-colors font-joti;
+  }
+  .menu-card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden border-b-4 border-terracotta-600 hover:shadow-lg transition-shadow;
+  }
+  .category-tab {
+    @apply px-6 py-2 font-joti text-lg text-terracotta-600 hover:text-terracotta-700 border-b-2 border-transparent hover:border-terracotta-600 transition-colors;
+  }
 }
