@@ -129,6 +129,12 @@ exports.Prisma.MenuItemScalarFieldEnum = {
   price: 'price',
   category: 'category',
   image: 'image',
+  vegan: 'vegan',
+  vegetarian: 'vegetarian',
+  glutenFree: 'glutenFree',
+  nutFree: 'nutFree',
+  dairyFree: 'dairyFree',
+  spicy: 'spicy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

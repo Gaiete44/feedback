@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { MenuCard } from '@/app/_components/MenuCard';
+import { getColorScheme } from '@/app/_lib/menuColors';
 
 interface OrderItem {
   menuItemId: string;
@@ -14,6 +15,12 @@ interface OrderItem {
     category: string;
     price: number;
     image: string;
+    vegan: boolean;
+    vegetarian: boolean;
+    glutenFree: boolean;
+    nutFree: boolean;
+    dairyFree: boolean;
+    spicy: boolean;
   };
   quantity: number;
 }
@@ -26,6 +33,12 @@ interface Recommendation {
     category: string;
     price: number;
     image: string;
+    vegan: boolean;
+    vegetarian: boolean;
+    glutenFree: boolean;
+    nutFree: boolean;
+    dairyFree: boolean;
+    spicy: boolean;
   };
   score: number;
   reason: string;
@@ -154,7 +167,7 @@ export default function FeedbackPage() {
                         onClick={() => handleRatingChange(item.menuItemId, star)}
                         className={`text-3xl transform transition-transform hover:scale-110 ${
                           (ratings[item.menuItemId] || 0) >= star 
-                            ? 'text-marigold-500' 
+                            ? 'text-amber-400' 
                             : 'text-gray-300'
                         }`}
                       >
@@ -169,7 +182,7 @@ export default function FeedbackPage() {
                   <textarea
                     value={comments[item.menuItemId] || ''}
                     onChange={(e) => handleCommentChange(item.menuItemId, e.target.value)}
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-terracotta-600 focus:border-transparent"
+                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-terracotta-600 focus:border-transparent resize-none"
                     rows={3}
                     placeholder="Tell us what you thought about this dish..."
                   />
@@ -180,16 +193,22 @@ export default function FeedbackPage() {
           
           <button
             onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="mt-8 w-full bg-jade-600 text-white py-3 rounded-full hover:bg-jade-700 transition-colors disabled:opacity-50 font-joti text-xl"
+            disabled={isSubmitting || Object.keys(ratings).length === 0}
+            className="mt-8 w-full bg-terracotta-600 text-white py-3 rounded-full hover:bg-terracotta-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-joti text-xl"
           >
             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
           </button>
+          
+          {Object.keys(ratings).length === 0 && (
+            <p className="text-center text-gray-500 mt-2 text-sm">
+              Please rate at least one dish to submit your feedback
+            </p>
+          )}
         </>
       ) : (
         <div className="space-y-8">
           <div className="text-center">
-            <h2 className="text-3xl font-joti text-terracotta-600 mb-4">Gracias!</h2>
+            <h2 className="text-3xl font-joti text-terracotta-600 mb-4">¡Gracias!</h2>
             <p className="text-xl font-joti text-gray-600 mb-8">
               Based on your taste, we think you&apos;ll love these:
             </p>

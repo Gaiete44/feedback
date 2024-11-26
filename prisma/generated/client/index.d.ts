@@ -1207,6 +1207,12 @@ export namespace Prisma {
     price: number | null
     category: string | null
     image: string | null
+    vegan: boolean | null
+    vegetarian: boolean | null
+    glutenFree: boolean | null
+    nutFree: boolean | null
+    dairyFree: boolean | null
+    spicy: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1218,6 +1224,12 @@ export namespace Prisma {
     price: number | null
     category: string | null
     image: string | null
+    vegan: boolean | null
+    vegetarian: boolean | null
+    glutenFree: boolean | null
+    nutFree: boolean | null
+    dairyFree: boolean | null
+    spicy: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1229,6 +1241,12 @@ export namespace Prisma {
     price: number
     category: number
     image: number
+    vegan: number
+    vegetarian: number
+    glutenFree: number
+    nutFree: number
+    dairyFree: number
+    spicy: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1250,6 +1268,12 @@ export namespace Prisma {
     price?: true
     category?: true
     image?: true
+    vegan?: true
+    vegetarian?: true
+    glutenFree?: true
+    nutFree?: true
+    dairyFree?: true
+    spicy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1261,6 +1285,12 @@ export namespace Prisma {
     price?: true
     category?: true
     image?: true
+    vegan?: true
+    vegetarian?: true
+    glutenFree?: true
+    nutFree?: true
+    dairyFree?: true
+    spicy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1272,6 +1302,12 @@ export namespace Prisma {
     price?: true
     category?: true
     image?: true
+    vegan?: true
+    vegetarian?: true
+    glutenFree?: true
+    nutFree?: true
+    dairyFree?: true
+    spicy?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1370,6 +1406,12 @@ export namespace Prisma {
     price: number
     category: string
     image: string
+    vegan: boolean
+    vegetarian: boolean
+    glutenFree: boolean
+    nutFree: boolean
+    dairyFree: boolean
+    spicy: boolean
     createdAt: Date
     updatedAt: Date
     _count: MenuItemCountAggregateOutputType | null
@@ -1400,6 +1442,12 @@ export namespace Prisma {
     price?: boolean
     category?: boolean
     image?: boolean
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     OrderItem?: boolean | MenuItem$OrderItemArgs<ExtArgs>
@@ -1414,6 +1462,12 @@ export namespace Prisma {
     price?: boolean
     category?: boolean
     image?: boolean
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["menuItem"]>
@@ -1425,6 +1479,12 @@ export namespace Prisma {
     price?: boolean
     category?: boolean
     image?: boolean
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -1449,6 +1509,12 @@ export namespace Prisma {
       price: number
       category: string
       image: string
+      vegan: boolean
+      vegetarian: boolean
+      glutenFree: boolean
+      nutFree: boolean
+      dairyFree: boolean
+      spicy: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["menuItem"]>
@@ -1852,6 +1918,12 @@ export namespace Prisma {
     readonly price: FieldRef<"MenuItem", 'Float'>
     readonly category: FieldRef<"MenuItem", 'String'>
     readonly image: FieldRef<"MenuItem", 'String'>
+    readonly vegan: FieldRef<"MenuItem", 'Boolean'>
+    readonly vegetarian: FieldRef<"MenuItem", 'Boolean'>
+    readonly glutenFree: FieldRef<"MenuItem", 'Boolean'>
+    readonly nutFree: FieldRef<"MenuItem", 'Boolean'>
+    readonly dairyFree: FieldRef<"MenuItem", 'Boolean'>
+    readonly spicy: FieldRef<"MenuItem", 'Boolean'>
     readonly createdAt: FieldRef<"MenuItem", 'DateTime'>
     readonly updatedAt: FieldRef<"MenuItem", 'DateTime'>
   }
@@ -5195,6 +5267,12 @@ export namespace Prisma {
     price: 'price',
     category: 'category',
     image: 'image',
+    vegan: 'vegan',
+    vegetarian: 'vegetarian',
+    glutenFree: 'glutenFree',
+    nutFree: 'nutFree',
+    dairyFree: 'dairyFree',
+    spicy: 'spicy',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -5293,6 +5371,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -5333,6 +5418,12 @@ export namespace Prisma {
     price?: FloatFilter<"MenuItem"> | number
     category?: StringFilter<"MenuItem"> | string
     image?: StringFilter<"MenuItem"> | string
+    vegan?: BoolFilter<"MenuItem"> | boolean
+    vegetarian?: BoolFilter<"MenuItem"> | boolean
+    glutenFree?: BoolFilter<"MenuItem"> | boolean
+    nutFree?: BoolFilter<"MenuItem"> | boolean
+    dairyFree?: BoolFilter<"MenuItem"> | boolean
+    spicy?: BoolFilter<"MenuItem"> | boolean
     createdAt?: DateTimeFilter<"MenuItem"> | Date | string
     updatedAt?: DateTimeFilter<"MenuItem"> | Date | string
     OrderItem?: OrderItemListRelationFilter
@@ -5346,6 +5437,12 @@ export namespace Prisma {
     price?: SortOrder
     category?: SortOrder
     image?: SortOrder
+    vegan?: SortOrder
+    vegetarian?: SortOrder
+    glutenFree?: SortOrder
+    nutFree?: SortOrder
+    dairyFree?: SortOrder
+    spicy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     OrderItem?: OrderItemOrderByRelationAggregateInput
@@ -5362,6 +5459,12 @@ export namespace Prisma {
     price?: FloatFilter<"MenuItem"> | number
     category?: StringFilter<"MenuItem"> | string
     image?: StringFilter<"MenuItem"> | string
+    vegan?: BoolFilter<"MenuItem"> | boolean
+    vegetarian?: BoolFilter<"MenuItem"> | boolean
+    glutenFree?: BoolFilter<"MenuItem"> | boolean
+    nutFree?: BoolFilter<"MenuItem"> | boolean
+    dairyFree?: BoolFilter<"MenuItem"> | boolean
+    spicy?: BoolFilter<"MenuItem"> | boolean
     createdAt?: DateTimeFilter<"MenuItem"> | Date | string
     updatedAt?: DateTimeFilter<"MenuItem"> | Date | string
     OrderItem?: OrderItemListRelationFilter
@@ -5375,6 +5478,12 @@ export namespace Prisma {
     price?: SortOrder
     category?: SortOrder
     image?: SortOrder
+    vegan?: SortOrder
+    vegetarian?: SortOrder
+    glutenFree?: SortOrder
+    nutFree?: SortOrder
+    dairyFree?: SortOrder
+    spicy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MenuItemCountOrderByAggregateInput
@@ -5394,6 +5503,12 @@ export namespace Prisma {
     price?: FloatWithAggregatesFilter<"MenuItem"> | number
     category?: StringWithAggregatesFilter<"MenuItem"> | string
     image?: StringWithAggregatesFilter<"MenuItem"> | string
+    vegan?: BoolWithAggregatesFilter<"MenuItem"> | boolean
+    vegetarian?: BoolWithAggregatesFilter<"MenuItem"> | boolean
+    glutenFree?: BoolWithAggregatesFilter<"MenuItem"> | boolean
+    nutFree?: BoolWithAggregatesFilter<"MenuItem"> | boolean
+    dairyFree?: BoolWithAggregatesFilter<"MenuItem"> | boolean
+    spicy?: BoolWithAggregatesFilter<"MenuItem"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"MenuItem"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MenuItem"> | Date | string
   }
@@ -5585,6 +5700,12 @@ export namespace Prisma {
     price: number
     category: string
     image: string
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     OrderItem?: OrderItemCreateNestedManyWithoutMenuItemInput
@@ -5598,6 +5719,12 @@ export namespace Prisma {
     price: number
     category: string
     image: string
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     OrderItem?: OrderItemUncheckedCreateNestedManyWithoutMenuItemInput
@@ -5611,6 +5738,12 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    vegan?: BoolFieldUpdateOperationsInput | boolean
+    vegetarian?: BoolFieldUpdateOperationsInput | boolean
+    glutenFree?: BoolFieldUpdateOperationsInput | boolean
+    nutFree?: BoolFieldUpdateOperationsInput | boolean
+    dairyFree?: BoolFieldUpdateOperationsInput | boolean
+    spicy?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     OrderItem?: OrderItemUpdateManyWithoutMenuItemNestedInput
@@ -5624,6 +5757,12 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    vegan?: BoolFieldUpdateOperationsInput | boolean
+    vegetarian?: BoolFieldUpdateOperationsInput | boolean
+    glutenFree?: BoolFieldUpdateOperationsInput | boolean
+    nutFree?: BoolFieldUpdateOperationsInput | boolean
+    dairyFree?: BoolFieldUpdateOperationsInput | boolean
+    spicy?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     OrderItem?: OrderItemUncheckedUpdateManyWithoutMenuItemNestedInput
@@ -5637,6 +5776,12 @@ export namespace Prisma {
     price: number
     category: string
     image: string
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5648,6 +5793,12 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    vegan?: BoolFieldUpdateOperationsInput | boolean
+    vegetarian?: BoolFieldUpdateOperationsInput | boolean
+    glutenFree?: BoolFieldUpdateOperationsInput | boolean
+    nutFree?: BoolFieldUpdateOperationsInput | boolean
+    dairyFree?: BoolFieldUpdateOperationsInput | boolean
+    spicy?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5659,6 +5810,12 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    vegan?: BoolFieldUpdateOperationsInput | boolean
+    vegetarian?: BoolFieldUpdateOperationsInput | boolean
+    glutenFree?: BoolFieldUpdateOperationsInput | boolean
+    nutFree?: BoolFieldUpdateOperationsInput | boolean
+    dairyFree?: BoolFieldUpdateOperationsInput | boolean
+    spicy?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5861,6 +6018,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5899,6 +6061,12 @@ export namespace Prisma {
     price?: SortOrder
     category?: SortOrder
     image?: SortOrder
+    vegan?: SortOrder
+    vegetarian?: SortOrder
+    glutenFree?: SortOrder
+    nutFree?: SortOrder
+    dairyFree?: SortOrder
+    spicy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5914,6 +6082,12 @@ export namespace Prisma {
     price?: SortOrder
     category?: SortOrder
     image?: SortOrder
+    vegan?: SortOrder
+    vegetarian?: SortOrder
+    glutenFree?: SortOrder
+    nutFree?: SortOrder
+    dairyFree?: SortOrder
+    spicy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5925,6 +6099,12 @@ export namespace Prisma {
     price?: SortOrder
     category?: SortOrder
     image?: SortOrder
+    vegan?: SortOrder
+    vegetarian?: SortOrder
+    glutenFree?: SortOrder
+    nutFree?: SortOrder
+    dairyFree?: SortOrder
+    spicy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5965,6 +6145,14 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -6190,6 +6378,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -6429,6 +6621,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -6482,6 +6679,14 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -6745,6 +6950,12 @@ export namespace Prisma {
     price: number
     category: string
     image: string
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     Feedback?: FeedbackCreateNestedManyWithoutMenuItemInput
@@ -6757,6 +6968,12 @@ export namespace Prisma {
     price: number
     category: string
     image: string
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     Feedback?: FeedbackUncheckedCreateNestedManyWithoutMenuItemInput
@@ -6808,6 +7025,12 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    vegan?: BoolFieldUpdateOperationsInput | boolean
+    vegetarian?: BoolFieldUpdateOperationsInput | boolean
+    glutenFree?: BoolFieldUpdateOperationsInput | boolean
+    nutFree?: BoolFieldUpdateOperationsInput | boolean
+    dairyFree?: BoolFieldUpdateOperationsInput | boolean
+    spicy?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Feedback?: FeedbackUpdateManyWithoutMenuItemNestedInput
@@ -6820,6 +7043,12 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    vegan?: BoolFieldUpdateOperationsInput | boolean
+    vegetarian?: BoolFieldUpdateOperationsInput | boolean
+    glutenFree?: BoolFieldUpdateOperationsInput | boolean
+    nutFree?: BoolFieldUpdateOperationsInput | boolean
+    dairyFree?: BoolFieldUpdateOperationsInput | boolean
+    spicy?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Feedback?: FeedbackUncheckedUpdateManyWithoutMenuItemNestedInput
@@ -6861,6 +7090,12 @@ export namespace Prisma {
     price: number
     category: string
     image: string
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     OrderItem?: OrderItemCreateNestedManyWithoutMenuItemInput
@@ -6873,6 +7108,12 @@ export namespace Prisma {
     price: number
     category: string
     image: string
+    vegan?: boolean
+    vegetarian?: boolean
+    glutenFree?: boolean
+    nutFree?: boolean
+    dairyFree?: boolean
+    spicy?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     OrderItem?: OrderItemUncheckedCreateNestedManyWithoutMenuItemInput
@@ -6924,6 +7165,12 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    vegan?: BoolFieldUpdateOperationsInput | boolean
+    vegetarian?: BoolFieldUpdateOperationsInput | boolean
+    glutenFree?: BoolFieldUpdateOperationsInput | boolean
+    nutFree?: BoolFieldUpdateOperationsInput | boolean
+    dairyFree?: BoolFieldUpdateOperationsInput | boolean
+    spicy?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     OrderItem?: OrderItemUpdateManyWithoutMenuItemNestedInput
@@ -6936,6 +7183,12 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    vegan?: BoolFieldUpdateOperationsInput | boolean
+    vegetarian?: BoolFieldUpdateOperationsInput | boolean
+    glutenFree?: BoolFieldUpdateOperationsInput | boolean
+    nutFree?: BoolFieldUpdateOperationsInput | boolean
+    dairyFree?: BoolFieldUpdateOperationsInput | boolean
+    spicy?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     OrderItem?: OrderItemUncheckedUpdateManyWithoutMenuItemNestedInput
