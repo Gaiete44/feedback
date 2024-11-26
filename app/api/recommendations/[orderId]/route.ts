@@ -4,11 +4,11 @@ import { getPostFeedbackRecommendations } from '@/app/_lib/recommendationEngine'
 
 export async function GET(
   req: Request,
-  context: { params: { orderId: string } }
+  context: { params: Promise<{ orderId: string }> }
 ) {
   try {
     const recommendations = await getPostFeedbackRecommendations(
-      context.params.orderId
+      (await context.params).orderId
     );
     return NextResponse.json(recommendations);
   } catch (error) {
