@@ -1101,13 +1101,13 @@ export namespace Prisma {
    */
 
   export type MenuItemCountOutputType = {
-    OrderItem: number
-    Feedback: number
+    orderItems: number
+    feedback: number
   }
 
   export type MenuItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    OrderItem?: boolean | MenuItemCountOutputTypeCountOrderItemArgs
-    Feedback?: boolean | MenuItemCountOutputTypeCountFeedbackArgs
+    orderItems?: boolean | MenuItemCountOutputTypeCountOrderItemsArgs
+    feedback?: boolean | MenuItemCountOutputTypeCountFeedbackArgs
   }
 
   // Custom InputTypes
@@ -1124,7 +1124,7 @@ export namespace Prisma {
   /**
    * MenuItemCountOutputType without action
    */
-  export type MenuItemCountOutputTypeCountOrderItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MenuItemCountOutputTypeCountOrderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrderItemWhereInput
   }
 
@@ -1142,12 +1142,12 @@ export namespace Prisma {
 
   export type OrderCountOutputType = {
     items: number
-    Feedback: number
+    feedback: number
   }
 
   export type OrderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | OrderCountOutputTypeCountItemsArgs
-    Feedback?: boolean | OrderCountOutputTypeCountFeedbackArgs
+    feedback?: boolean | OrderCountOutputTypeCountFeedbackArgs
   }
 
   // Custom InputTypes
@@ -1202,6 +1202,8 @@ export namespace Prisma {
 
   export type MenuItemMinAggregateOutputType = {
     id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
     name: string | null
     description: string | null
     price: number | null
@@ -1213,12 +1215,12 @@ export namespace Prisma {
     nutFree: boolean | null
     dairyFree: boolean | null
     spicy: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type MenuItemMaxAggregateOutputType = {
     id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
     name: string | null
     description: string | null
     price: number | null
@@ -1230,12 +1232,12 @@ export namespace Prisma {
     nutFree: boolean | null
     dairyFree: boolean | null
     spicy: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type MenuItemCountAggregateOutputType = {
     id: number
+    createdAt: number
+    updatedAt: number
     name: number
     description: number
     price: number
@@ -1247,8 +1249,6 @@ export namespace Prisma {
     nutFree: number
     dairyFree: number
     spicy: number
-    createdAt: number
-    updatedAt: number
     _all: number
   }
 
@@ -1263,6 +1263,8 @@ export namespace Prisma {
 
   export type MenuItemMinAggregateInputType = {
     id?: true
+    createdAt?: true
+    updatedAt?: true
     name?: true
     description?: true
     price?: true
@@ -1274,12 +1276,12 @@ export namespace Prisma {
     nutFree?: true
     dairyFree?: true
     spicy?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type MenuItemMaxAggregateInputType = {
     id?: true
+    createdAt?: true
+    updatedAt?: true
     name?: true
     description?: true
     price?: true
@@ -1291,12 +1293,12 @@ export namespace Prisma {
     nutFree?: true
     dairyFree?: true
     spicy?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type MenuItemCountAggregateInputType = {
     id?: true
+    createdAt?: true
+    updatedAt?: true
     name?: true
     description?: true
     price?: true
@@ -1308,8 +1310,6 @@ export namespace Prisma {
     nutFree?: true
     dairyFree?: true
     spicy?: true
-    createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
@@ -1401,6 +1401,8 @@ export namespace Prisma {
 
   export type MenuItemGroupByOutputType = {
     id: string
+    createdAt: Date
+    updatedAt: Date
     name: string
     description: string
     price: number
@@ -1412,8 +1414,6 @@ export namespace Prisma {
     nutFree: boolean
     dairyFree: boolean
     spicy: boolean
-    createdAt: Date
-    updatedAt: Date
     _count: MenuItemCountAggregateOutputType | null
     _avg: MenuItemAvgAggregateOutputType | null
     _sum: MenuItemSumAggregateOutputType | null
@@ -1437,6 +1437,8 @@ export namespace Prisma {
 
   export type MenuItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     name?: boolean
     description?: boolean
     price?: boolean
@@ -1448,15 +1450,15 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    OrderItem?: boolean | MenuItem$OrderItemArgs<ExtArgs>
-    Feedback?: boolean | MenuItem$FeedbackArgs<ExtArgs>
+    orderItems?: boolean | MenuItem$orderItemsArgs<ExtArgs>
+    feedback?: boolean | MenuItem$feedbackArgs<ExtArgs>
     _count?: boolean | MenuItemCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["menuItem"]>
 
   export type MenuItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     name?: boolean
     description?: boolean
     price?: boolean
@@ -1468,12 +1470,12 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["menuItem"]>
 
   export type MenuItemSelectScalar = {
     id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     name?: boolean
     description?: boolean
     price?: boolean
@@ -1485,13 +1487,11 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
   export type MenuItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    OrderItem?: boolean | MenuItem$OrderItemArgs<ExtArgs>
-    Feedback?: boolean | MenuItem$FeedbackArgs<ExtArgs>
+    orderItems?: boolean | MenuItem$orderItemsArgs<ExtArgs>
+    feedback?: boolean | MenuItem$feedbackArgs<ExtArgs>
     _count?: boolean | MenuItemCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MenuItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1499,11 +1499,13 @@ export namespace Prisma {
   export type $MenuItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MenuItem"
     objects: {
-      OrderItem: Prisma.$OrderItemPayload<ExtArgs>[]
-      Feedback: Prisma.$FeedbackPayload<ExtArgs>[]
+      orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
+      feedback: Prisma.$FeedbackPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      createdAt: Date
+      updatedAt: Date
       name: string
       description: string
       price: number
@@ -1515,8 +1517,6 @@ export namespace Prisma {
       nutFree: boolean
       dairyFree: boolean
       spicy: boolean
-      createdAt: Date
-      updatedAt: Date
     }, ExtArgs["result"]["menuItem"]>
     composites: {}
   }
@@ -1881,8 +1881,8 @@ export namespace Prisma {
    */
   export interface Prisma__MenuItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    OrderItem<T extends MenuItem$OrderItemArgs<ExtArgs> = {}>(args?: Subset<T, MenuItem$OrderItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany"> | Null>
-    Feedback<T extends MenuItem$FeedbackArgs<ExtArgs> = {}>(args?: Subset<T, MenuItem$FeedbackArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany"> | Null>
+    orderItems<T extends MenuItem$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, MenuItem$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany"> | Null>
+    feedback<T extends MenuItem$feedbackArgs<ExtArgs> = {}>(args?: Subset<T, MenuItem$feedbackArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1913,6 +1913,8 @@ export namespace Prisma {
    */ 
   interface MenuItemFieldRefs {
     readonly id: FieldRef<"MenuItem", 'String'>
+    readonly createdAt: FieldRef<"MenuItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"MenuItem", 'DateTime'>
     readonly name: FieldRef<"MenuItem", 'String'>
     readonly description: FieldRef<"MenuItem", 'String'>
     readonly price: FieldRef<"MenuItem", 'Float'>
@@ -1924,8 +1926,6 @@ export namespace Prisma {
     readonly nutFree: FieldRef<"MenuItem", 'Boolean'>
     readonly dairyFree: FieldRef<"MenuItem", 'Boolean'>
     readonly spicy: FieldRef<"MenuItem", 'Boolean'>
-    readonly createdAt: FieldRef<"MenuItem", 'DateTime'>
-    readonly updatedAt: FieldRef<"MenuItem", 'DateTime'>
   }
     
 
@@ -2240,9 +2240,9 @@ export namespace Prisma {
   }
 
   /**
-   * MenuItem.OrderItem
+   * MenuItem.orderItems
    */
-  export type MenuItem$OrderItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MenuItem$orderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the OrderItem
      */
@@ -2260,9 +2260,9 @@ export namespace Prisma {
   }
 
   /**
-   * MenuItem.Feedback
+   * MenuItem.feedback
    */
-  export type MenuItem$FeedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MenuItem$feedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Feedback
      */
@@ -2307,69 +2307,93 @@ export namespace Prisma {
   }
 
   export type OrderAvgAggregateOutputType = {
+    tableNumber: number | null
+    round: number | null
+    personNumber: number | null
     total: number | null
   }
 
   export type OrderSumAggregateOutputType = {
+    tableNumber: number | null
+    round: number | null
+    personNumber: number | null
     total: number | null
   }
 
   export type OrderMinAggregateOutputType = {
     id: string | null
-    total: number | null
-    status: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    tableNumber: number | null
+    round: number | null
+    personNumber: number | null
+    total: number | null
   }
 
   export type OrderMaxAggregateOutputType = {
     id: string | null
-    total: number | null
-    status: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    tableNumber: number | null
+    round: number | null
+    personNumber: number | null
+    total: number | null
   }
 
   export type OrderCountAggregateOutputType = {
     id: number
-    total: number
-    status: number
     createdAt: number
     updatedAt: number
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
     _all: number
   }
 
 
   export type OrderAvgAggregateInputType = {
+    tableNumber?: true
+    round?: true
+    personNumber?: true
     total?: true
   }
 
   export type OrderSumAggregateInputType = {
+    tableNumber?: true
+    round?: true
+    personNumber?: true
     total?: true
   }
 
   export type OrderMinAggregateInputType = {
     id?: true
-    total?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
+    tableNumber?: true
+    round?: true
+    personNumber?: true
+    total?: true
   }
 
   export type OrderMaxAggregateInputType = {
     id?: true
-    total?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
+    tableNumber?: true
+    round?: true
+    personNumber?: true
+    total?: true
   }
 
   export type OrderCountAggregateInputType = {
     id?: true
-    total?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
+    tableNumber?: true
+    round?: true
+    personNumber?: true
+    total?: true
     _all?: true
   }
 
@@ -2461,10 +2485,12 @@ export namespace Prisma {
 
   export type OrderGroupByOutputType = {
     id: string
-    total: number
-    status: string
     createdAt: Date
     updatedAt: Date
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
     _count: OrderCountAggregateOutputType | null
     _avg: OrderAvgAggregateOutputType | null
     _sum: OrderSumAggregateOutputType | null
@@ -2488,34 +2514,40 @@ export namespace Prisma {
 
   export type OrderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    total?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tableNumber?: boolean
+    round?: boolean
+    personNumber?: boolean
+    total?: boolean
     items?: boolean | Order$itemsArgs<ExtArgs>
-    Feedback?: boolean | Order$FeedbackArgs<ExtArgs>
+    feedback?: boolean | Order$feedbackArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    total?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tableNumber?: boolean
+    round?: boolean
+    personNumber?: boolean
+    total?: boolean
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectScalar = {
     id?: boolean
-    total?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tableNumber?: boolean
+    round?: boolean
+    personNumber?: boolean
+    total?: boolean
   }
 
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     items?: boolean | Order$itemsArgs<ExtArgs>
-    Feedback?: boolean | Order$FeedbackArgs<ExtArgs>
+    feedback?: boolean | Order$feedbackArgs<ExtArgs>
     _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2524,14 +2556,16 @@ export namespace Prisma {
     name: "Order"
     objects: {
       items: Prisma.$OrderItemPayload<ExtArgs>[]
-      Feedback: Prisma.$FeedbackPayload<ExtArgs>[]
+      feedback: Prisma.$FeedbackPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      total: number
-      status: string
       createdAt: Date
       updatedAt: Date
+      tableNumber: number
+      round: number
+      personNumber: number
+      total: number
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -2897,7 +2931,7 @@ export namespace Prisma {
   export interface Prisma__OrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     items<T extends Order$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Order$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany"> | Null>
-    Feedback<T extends Order$FeedbackArgs<ExtArgs> = {}>(args?: Subset<T, Order$FeedbackArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany"> | Null>
+    feedback<T extends Order$feedbackArgs<ExtArgs> = {}>(args?: Subset<T, Order$feedbackArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2928,10 +2962,12 @@ export namespace Prisma {
    */ 
   interface OrderFieldRefs {
     readonly id: FieldRef<"Order", 'String'>
-    readonly total: FieldRef<"Order", 'Float'>
-    readonly status: FieldRef<"Order", 'String'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
+    readonly tableNumber: FieldRef<"Order", 'Int'>
+    readonly round: FieldRef<"Order", 'Int'>
+    readonly personNumber: FieldRef<"Order", 'Int'>
+    readonly total: FieldRef<"Order", 'Float'>
   }
     
 
@@ -3266,9 +3302,9 @@ export namespace Prisma {
   }
 
   /**
-   * Order.Feedback
+   * Order.feedback
    */
-  export type Order$FeedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Order$feedbackArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Feedback
      */
@@ -3322,6 +3358,8 @@ export namespace Prisma {
 
   export type OrderItemMinAggregateOutputType = {
     id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
     quantity: number | null
     menuItemId: string | null
     orderId: string | null
@@ -3329,6 +3367,8 @@ export namespace Prisma {
 
   export type OrderItemMaxAggregateOutputType = {
     id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
     quantity: number | null
     menuItemId: string | null
     orderId: string | null
@@ -3336,6 +3376,8 @@ export namespace Prisma {
 
   export type OrderItemCountAggregateOutputType = {
     id: number
+    createdAt: number
+    updatedAt: number
     quantity: number
     menuItemId: number
     orderId: number
@@ -3353,6 +3395,8 @@ export namespace Prisma {
 
   export type OrderItemMinAggregateInputType = {
     id?: true
+    createdAt?: true
+    updatedAt?: true
     quantity?: true
     menuItemId?: true
     orderId?: true
@@ -3360,6 +3404,8 @@ export namespace Prisma {
 
   export type OrderItemMaxAggregateInputType = {
     id?: true
+    createdAt?: true
+    updatedAt?: true
     quantity?: true
     menuItemId?: true
     orderId?: true
@@ -3367,6 +3413,8 @@ export namespace Prisma {
 
   export type OrderItemCountAggregateInputType = {
     id?: true
+    createdAt?: true
+    updatedAt?: true
     quantity?: true
     menuItemId?: true
     orderId?: true
@@ -3461,6 +3509,8 @@ export namespace Prisma {
 
   export type OrderItemGroupByOutputType = {
     id: string
+    createdAt: Date
+    updatedAt: Date
     quantity: number
     menuItemId: string
     orderId: string
@@ -3487,6 +3537,8 @@ export namespace Prisma {
 
   export type OrderItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     quantity?: boolean
     menuItemId?: boolean
     orderId?: boolean
@@ -3496,6 +3548,8 @@ export namespace Prisma {
 
   export type OrderItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     quantity?: boolean
     menuItemId?: boolean
     orderId?: boolean
@@ -3505,6 +3559,8 @@ export namespace Prisma {
 
   export type OrderItemSelectScalar = {
     id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     quantity?: boolean
     menuItemId?: boolean
     orderId?: boolean
@@ -3527,6 +3583,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      createdAt: Date
+      updatedAt: Date
       quantity: number
       menuItemId: string
       orderId: string
@@ -3926,6 +3984,8 @@ export namespace Prisma {
    */ 
   interface OrderItemFieldRefs {
     readonly id: FieldRef<"OrderItem", 'String'>
+    readonly createdAt: FieldRef<"OrderItem", 'DateTime'>
+    readonly updatedAt: FieldRef<"OrderItem", 'DateTime'>
     readonly quantity: FieldRef<"OrderItem", 'Int'>
     readonly menuItemId: FieldRef<"OrderItem", 'String'>
     readonly orderId: FieldRef<"OrderItem", 'String'>
@@ -4283,29 +4343,29 @@ export namespace Prisma {
 
   export type FeedbackMinAggregateOutputType = {
     id: string | null
-    menuItemId: string | null
-    orderId: string | null
+    createdAt: Date | null
     rating: number | null
     comment: string | null
-    createdAt: Date | null
+    menuItemId: string | null
+    orderId: string | null
   }
 
   export type FeedbackMaxAggregateOutputType = {
     id: string | null
-    menuItemId: string | null
-    orderId: string | null
+    createdAt: Date | null
     rating: number | null
     comment: string | null
-    createdAt: Date | null
+    menuItemId: string | null
+    orderId: string | null
   }
 
   export type FeedbackCountAggregateOutputType = {
     id: number
-    menuItemId: number
-    orderId: number
+    createdAt: number
     rating: number
     comment: number
-    createdAt: number
+    menuItemId: number
+    orderId: number
     _all: number
   }
 
@@ -4320,29 +4380,29 @@ export namespace Prisma {
 
   export type FeedbackMinAggregateInputType = {
     id?: true
-    menuItemId?: true
-    orderId?: true
+    createdAt?: true
     rating?: true
     comment?: true
-    createdAt?: true
+    menuItemId?: true
+    orderId?: true
   }
 
   export type FeedbackMaxAggregateInputType = {
     id?: true
-    menuItemId?: true
-    orderId?: true
+    createdAt?: true
     rating?: true
     comment?: true
-    createdAt?: true
+    menuItemId?: true
+    orderId?: true
   }
 
   export type FeedbackCountAggregateInputType = {
     id?: true
-    menuItemId?: true
-    orderId?: true
+    createdAt?: true
     rating?: true
     comment?: true
-    createdAt?: true
+    menuItemId?: true
+    orderId?: true
     _all?: true
   }
 
@@ -4434,11 +4494,11 @@ export namespace Prisma {
 
   export type FeedbackGroupByOutputType = {
     id: string
-    menuItemId: string
-    orderId: string
+    createdAt: Date
     rating: number
     comment: string | null
-    createdAt: Date
+    menuItemId: string
+    orderId: string
     _count: FeedbackCountAggregateOutputType | null
     _avg: FeedbackAvgAggregateOutputType | null
     _sum: FeedbackSumAggregateOutputType | null
@@ -4462,33 +4522,33 @@ export namespace Prisma {
 
   export type FeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    menuItemId?: boolean
-    orderId?: boolean
+    createdAt?: boolean
     rating?: boolean
     comment?: boolean
-    createdAt?: boolean
+    menuItemId?: boolean
+    orderId?: boolean
     menuItem?: boolean | MenuItemDefaultArgs<ExtArgs>
     order?: boolean | OrderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    menuItemId?: boolean
-    orderId?: boolean
+    createdAt?: boolean
     rating?: boolean
     comment?: boolean
-    createdAt?: boolean
+    menuItemId?: boolean
+    orderId?: boolean
     menuItem?: boolean | MenuItemDefaultArgs<ExtArgs>
     order?: boolean | OrderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectScalar = {
     id?: boolean
-    menuItemId?: boolean
-    orderId?: boolean
+    createdAt?: boolean
     rating?: boolean
     comment?: boolean
-    createdAt?: boolean
+    menuItemId?: boolean
+    orderId?: boolean
   }
 
   export type FeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4508,11 +4568,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      menuItemId: string
-      orderId: string
+      createdAt: Date
       rating: number
       comment: string | null
-      createdAt: Date
+      menuItemId: string
+      orderId: string
     }, ExtArgs["result"]["feedback"]>
     composites: {}
   }
@@ -4909,11 +4969,11 @@ export namespace Prisma {
    */ 
   interface FeedbackFieldRefs {
     readonly id: FieldRef<"Feedback", 'String'>
-    readonly menuItemId: FieldRef<"Feedback", 'String'>
-    readonly orderId: FieldRef<"Feedback", 'String'>
+    readonly createdAt: FieldRef<"Feedback", 'DateTime'>
     readonly rating: FieldRef<"Feedback", 'Int'>
     readonly comment: FieldRef<"Feedback", 'String'>
-    readonly createdAt: FieldRef<"Feedback", 'DateTime'>
+    readonly menuItemId: FieldRef<"Feedback", 'String'>
+    readonly orderId: FieldRef<"Feedback", 'String'>
   }
     
 
@@ -5262,6 +5322,8 @@ export namespace Prisma {
 
   export const MenuItemScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     name: 'name',
     description: 'description',
     price: 'price',
@@ -5272,9 +5334,7 @@ export namespace Prisma {
     glutenFree: 'glutenFree',
     nutFree: 'nutFree',
     dairyFree: 'dairyFree',
-    spicy: 'spicy',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    spicy: 'spicy'
   };
 
   export type MenuItemScalarFieldEnum = (typeof MenuItemScalarFieldEnum)[keyof typeof MenuItemScalarFieldEnum]
@@ -5282,10 +5342,12 @@ export namespace Prisma {
 
   export const OrderScalarFieldEnum: {
     id: 'id',
-    total: 'total',
-    status: 'status',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    tableNumber: 'tableNumber',
+    round: 'round',
+    personNumber: 'personNumber',
+    total: 'total'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -5293,6 +5355,8 @@ export namespace Prisma {
 
   export const OrderItemScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     quantity: 'quantity',
     menuItemId: 'menuItemId',
     orderId: 'orderId'
@@ -5303,11 +5367,11 @@ export namespace Prisma {
 
   export const FeedbackScalarFieldEnum: {
     id: 'id',
-    menuItemId: 'menuItemId',
-    orderId: 'orderId',
+    createdAt: 'createdAt',
     rating: 'rating',
     comment: 'comment',
-    createdAt: 'createdAt'
+    menuItemId: 'menuItemId',
+    orderId: 'orderId'
   };
 
   export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
@@ -5357,6 +5421,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5374,20 +5452,6 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -5413,6 +5477,8 @@ export namespace Prisma {
     OR?: MenuItemWhereInput[]
     NOT?: MenuItemWhereInput | MenuItemWhereInput[]
     id?: StringFilter<"MenuItem"> | string
+    createdAt?: DateTimeFilter<"MenuItem"> | Date | string
+    updatedAt?: DateTimeFilter<"MenuItem"> | Date | string
     name?: StringFilter<"MenuItem"> | string
     description?: StringFilter<"MenuItem"> | string
     price?: FloatFilter<"MenuItem"> | number
@@ -5424,14 +5490,14 @@ export namespace Prisma {
     nutFree?: BoolFilter<"MenuItem"> | boolean
     dairyFree?: BoolFilter<"MenuItem"> | boolean
     spicy?: BoolFilter<"MenuItem"> | boolean
-    createdAt?: DateTimeFilter<"MenuItem"> | Date | string
-    updatedAt?: DateTimeFilter<"MenuItem"> | Date | string
-    OrderItem?: OrderItemListRelationFilter
-    Feedback?: FeedbackListRelationFilter
+    orderItems?: OrderItemListRelationFilter
+    feedback?: FeedbackListRelationFilter
   }
 
   export type MenuItemOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     name?: SortOrder
     description?: SortOrder
     price?: SortOrder
@@ -5443,10 +5509,8 @@ export namespace Prisma {
     nutFree?: SortOrder
     dairyFree?: SortOrder
     spicy?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    OrderItem?: OrderItemOrderByRelationAggregateInput
-    Feedback?: FeedbackOrderByRelationAggregateInput
+    orderItems?: OrderItemOrderByRelationAggregateInput
+    feedback?: FeedbackOrderByRelationAggregateInput
   }
 
   export type MenuItemWhereUniqueInput = Prisma.AtLeast<{
@@ -5454,6 +5518,8 @@ export namespace Prisma {
     AND?: MenuItemWhereInput | MenuItemWhereInput[]
     OR?: MenuItemWhereInput[]
     NOT?: MenuItemWhereInput | MenuItemWhereInput[]
+    createdAt?: DateTimeFilter<"MenuItem"> | Date | string
+    updatedAt?: DateTimeFilter<"MenuItem"> | Date | string
     name?: StringFilter<"MenuItem"> | string
     description?: StringFilter<"MenuItem"> | string
     price?: FloatFilter<"MenuItem"> | number
@@ -5465,14 +5531,14 @@ export namespace Prisma {
     nutFree?: BoolFilter<"MenuItem"> | boolean
     dairyFree?: BoolFilter<"MenuItem"> | boolean
     spicy?: BoolFilter<"MenuItem"> | boolean
-    createdAt?: DateTimeFilter<"MenuItem"> | Date | string
-    updatedAt?: DateTimeFilter<"MenuItem"> | Date | string
-    OrderItem?: OrderItemListRelationFilter
-    Feedback?: FeedbackListRelationFilter
+    orderItems?: OrderItemListRelationFilter
+    feedback?: FeedbackListRelationFilter
   }, "id">
 
   export type MenuItemOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     name?: SortOrder
     description?: SortOrder
     price?: SortOrder
@@ -5484,8 +5550,6 @@ export namespace Prisma {
     nutFree?: SortOrder
     dairyFree?: SortOrder
     spicy?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     _count?: MenuItemCountOrderByAggregateInput
     _avg?: MenuItemAvgOrderByAggregateInput
     _max?: MenuItemMaxOrderByAggregateInput
@@ -5498,6 +5562,8 @@ export namespace Prisma {
     OR?: MenuItemScalarWhereWithAggregatesInput[]
     NOT?: MenuItemScalarWhereWithAggregatesInput | MenuItemScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"MenuItem"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MenuItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MenuItem"> | Date | string
     name?: StringWithAggregatesFilter<"MenuItem"> | string
     description?: StringWithAggregatesFilter<"MenuItem"> | string
     price?: FloatWithAggregatesFilter<"MenuItem"> | number
@@ -5509,8 +5575,6 @@ export namespace Prisma {
     nutFree?: BoolWithAggregatesFilter<"MenuItem"> | boolean
     dairyFree?: BoolWithAggregatesFilter<"MenuItem"> | boolean
     spicy?: BoolWithAggregatesFilter<"MenuItem"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"MenuItem"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"MenuItem"> | Date | string
   }
 
   export type OrderWhereInput = {
@@ -5518,22 +5582,26 @@ export namespace Prisma {
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
     id?: StringFilter<"Order"> | string
-    total?: FloatFilter<"Order"> | number
-    status?: StringFilter<"Order"> | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+    tableNumber?: IntFilter<"Order"> | number
+    round?: IntFilter<"Order"> | number
+    personNumber?: IntFilter<"Order"> | number
+    total?: FloatFilter<"Order"> | number
     items?: OrderItemListRelationFilter
-    Feedback?: FeedbackListRelationFilter
+    feedback?: FeedbackListRelationFilter
   }
 
   export type OrderOrderByWithRelationInput = {
     id?: SortOrder
-    total?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tableNumber?: SortOrder
+    round?: SortOrder
+    personNumber?: SortOrder
+    total?: SortOrder
     items?: OrderItemOrderByRelationAggregateInput
-    Feedback?: FeedbackOrderByRelationAggregateInput
+    feedback?: FeedbackOrderByRelationAggregateInput
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -5541,20 +5609,24 @@ export namespace Prisma {
     AND?: OrderWhereInput | OrderWhereInput[]
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
-    total?: FloatFilter<"Order"> | number
-    status?: StringFilter<"Order"> | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+    tableNumber?: IntFilter<"Order"> | number
+    round?: IntFilter<"Order"> | number
+    personNumber?: IntFilter<"Order"> | number
+    total?: FloatFilter<"Order"> | number
     items?: OrderItemListRelationFilter
-    Feedback?: FeedbackListRelationFilter
+    feedback?: FeedbackListRelationFilter
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
     id?: SortOrder
-    total?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tableNumber?: SortOrder
+    round?: SortOrder
+    personNumber?: SortOrder
+    total?: SortOrder
     _count?: OrderCountOrderByAggregateInput
     _avg?: OrderAvgOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
@@ -5567,10 +5639,12 @@ export namespace Prisma {
     OR?: OrderScalarWhereWithAggregatesInput[]
     NOT?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Order"> | string
-    total?: FloatWithAggregatesFilter<"Order"> | number
-    status?: StringWithAggregatesFilter<"Order"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+    tableNumber?: IntWithAggregatesFilter<"Order"> | number
+    round?: IntWithAggregatesFilter<"Order"> | number
+    personNumber?: IntWithAggregatesFilter<"Order"> | number
+    total?: FloatWithAggregatesFilter<"Order"> | number
   }
 
   export type OrderItemWhereInput = {
@@ -5578,6 +5652,8 @@ export namespace Prisma {
     OR?: OrderItemWhereInput[]
     NOT?: OrderItemWhereInput | OrderItemWhereInput[]
     id?: StringFilter<"OrderItem"> | string
+    createdAt?: DateTimeFilter<"OrderItem"> | Date | string
+    updatedAt?: DateTimeFilter<"OrderItem"> | Date | string
     quantity?: IntFilter<"OrderItem"> | number
     menuItemId?: StringFilter<"OrderItem"> | string
     orderId?: StringFilter<"OrderItem"> | string
@@ -5587,6 +5663,8 @@ export namespace Prisma {
 
   export type OrderItemOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     quantity?: SortOrder
     menuItemId?: SortOrder
     orderId?: SortOrder
@@ -5599,6 +5677,8 @@ export namespace Prisma {
     AND?: OrderItemWhereInput | OrderItemWhereInput[]
     OR?: OrderItemWhereInput[]
     NOT?: OrderItemWhereInput | OrderItemWhereInput[]
+    createdAt?: DateTimeFilter<"OrderItem"> | Date | string
+    updatedAt?: DateTimeFilter<"OrderItem"> | Date | string
     quantity?: IntFilter<"OrderItem"> | number
     menuItemId?: StringFilter<"OrderItem"> | string
     orderId?: StringFilter<"OrderItem"> | string
@@ -5608,6 +5688,8 @@ export namespace Prisma {
 
   export type OrderItemOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     quantity?: SortOrder
     menuItemId?: SortOrder
     orderId?: SortOrder
@@ -5623,6 +5705,8 @@ export namespace Prisma {
     OR?: OrderItemScalarWhereWithAggregatesInput[]
     NOT?: OrderItemScalarWhereWithAggregatesInput | OrderItemScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"OrderItem"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"OrderItem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"OrderItem"> | Date | string
     quantity?: IntWithAggregatesFilter<"OrderItem"> | number
     menuItemId?: StringWithAggregatesFilter<"OrderItem"> | string
     orderId?: StringWithAggregatesFilter<"OrderItem"> | string
@@ -5633,22 +5717,22 @@ export namespace Prisma {
     OR?: FeedbackWhereInput[]
     NOT?: FeedbackWhereInput | FeedbackWhereInput[]
     id?: StringFilter<"Feedback"> | string
-    menuItemId?: StringFilter<"Feedback"> | string
-    orderId?: StringFilter<"Feedback"> | string
+    createdAt?: DateTimeFilter<"Feedback"> | Date | string
     rating?: IntFilter<"Feedback"> | number
     comment?: StringNullableFilter<"Feedback"> | string | null
-    createdAt?: DateTimeFilter<"Feedback"> | Date | string
+    menuItemId?: StringFilter<"Feedback"> | string
+    orderId?: StringFilter<"Feedback"> | string
     menuItem?: XOR<MenuItemRelationFilter, MenuItemWhereInput>
     order?: XOR<OrderRelationFilter, OrderWhereInput>
   }
 
   export type FeedbackOrderByWithRelationInput = {
     id?: SortOrder
-    menuItemId?: SortOrder
-    orderId?: SortOrder
+    createdAt?: SortOrder
     rating?: SortOrder
     comment?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
+    menuItemId?: SortOrder
+    orderId?: SortOrder
     menuItem?: MenuItemOrderByWithRelationInput
     order?: OrderOrderByWithRelationInput
   }
@@ -5658,22 +5742,22 @@ export namespace Prisma {
     AND?: FeedbackWhereInput | FeedbackWhereInput[]
     OR?: FeedbackWhereInput[]
     NOT?: FeedbackWhereInput | FeedbackWhereInput[]
-    menuItemId?: StringFilter<"Feedback"> | string
-    orderId?: StringFilter<"Feedback"> | string
+    createdAt?: DateTimeFilter<"Feedback"> | Date | string
     rating?: IntFilter<"Feedback"> | number
     comment?: StringNullableFilter<"Feedback"> | string | null
-    createdAt?: DateTimeFilter<"Feedback"> | Date | string
+    menuItemId?: StringFilter<"Feedback"> | string
+    orderId?: StringFilter<"Feedback"> | string
     menuItem?: XOR<MenuItemRelationFilter, MenuItemWhereInput>
     order?: XOR<OrderRelationFilter, OrderWhereInput>
   }, "id">
 
   export type FeedbackOrderByWithAggregationInput = {
     id?: SortOrder
-    menuItemId?: SortOrder
-    orderId?: SortOrder
+    createdAt?: SortOrder
     rating?: SortOrder
     comment?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
+    menuItemId?: SortOrder
+    orderId?: SortOrder
     _count?: FeedbackCountOrderByAggregateInput
     _avg?: FeedbackAvgOrderByAggregateInput
     _max?: FeedbackMaxOrderByAggregateInput
@@ -5686,15 +5770,17 @@ export namespace Prisma {
     OR?: FeedbackScalarWhereWithAggregatesInput[]
     NOT?: FeedbackScalarWhereWithAggregatesInput | FeedbackScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Feedback"> | string
-    menuItemId?: StringWithAggregatesFilter<"Feedback"> | string
-    orderId?: StringWithAggregatesFilter<"Feedback"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
     rating?: IntWithAggregatesFilter<"Feedback"> | number
     comment?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
+    menuItemId?: StringWithAggregatesFilter<"Feedback"> | string
+    orderId?: StringWithAggregatesFilter<"Feedback"> | string
   }
 
   export type MenuItemCreateInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     description: string
     price: number
@@ -5706,14 +5792,14 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    OrderItem?: OrderItemCreateNestedManyWithoutMenuItemInput
-    Feedback?: FeedbackCreateNestedManyWithoutMenuItemInput
+    orderItems?: OrderItemCreateNestedManyWithoutMenuItemInput
+    feedback?: FeedbackCreateNestedManyWithoutMenuItemInput
   }
 
   export type MenuItemUncheckedCreateInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     description: string
     price: number
@@ -5725,14 +5811,14 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    OrderItem?: OrderItemUncheckedCreateNestedManyWithoutMenuItemInput
-    Feedback?: FeedbackUncheckedCreateNestedManyWithoutMenuItemInput
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutMenuItemInput
+    feedback?: FeedbackUncheckedCreateNestedManyWithoutMenuItemInput
   }
 
   export type MenuItemUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
@@ -5744,14 +5830,14 @@ export namespace Prisma {
     nutFree?: BoolFieldUpdateOperationsInput | boolean
     dairyFree?: BoolFieldUpdateOperationsInput | boolean
     spicy?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    OrderItem?: OrderItemUpdateManyWithoutMenuItemNestedInput
-    Feedback?: FeedbackUpdateManyWithoutMenuItemNestedInput
+    orderItems?: OrderItemUpdateManyWithoutMenuItemNestedInput
+    feedback?: FeedbackUpdateManyWithoutMenuItemNestedInput
   }
 
   export type MenuItemUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
@@ -5763,14 +5849,14 @@ export namespace Prisma {
     nutFree?: BoolFieldUpdateOperationsInput | boolean
     dairyFree?: BoolFieldUpdateOperationsInput | boolean
     spicy?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    OrderItem?: OrderItemUncheckedUpdateManyWithoutMenuItemNestedInput
-    Feedback?: FeedbackUncheckedUpdateManyWithoutMenuItemNestedInput
+    orderItems?: OrderItemUncheckedUpdateManyWithoutMenuItemNestedInput
+    feedback?: FeedbackUncheckedUpdateManyWithoutMenuItemNestedInput
   }
 
   export type MenuItemCreateManyInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     description: string
     price: number
@@ -5782,12 +5868,12 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type MenuItemUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
@@ -5799,12 +5885,12 @@ export namespace Prisma {
     nutFree?: BoolFieldUpdateOperationsInput | boolean
     dairyFree?: BoolFieldUpdateOperationsInput | boolean
     spicy?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MenuItemUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
@@ -5816,83 +5902,99 @@ export namespace Prisma {
     nutFree?: BoolFieldUpdateOperationsInput | boolean
     dairyFree?: BoolFieldUpdateOperationsInput | boolean
     spicy?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrderCreateInput = {
     id?: string
-    total: number
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
     items?: OrderItemCreateNestedManyWithoutOrderInput
-    Feedback?: FeedbackCreateNestedManyWithoutOrderInput
+    feedback?: FeedbackCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateInput = {
     id?: string
-    total: number
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
     items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
-    Feedback?: FeedbackUncheckedCreateNestedManyWithoutOrderInput
+    feedback?: FeedbackUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    total?: FloatFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableNumber?: IntFieldUpdateOperationsInput | number
+    round?: IntFieldUpdateOperationsInput | number
+    personNumber?: IntFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
     items?: OrderItemUpdateManyWithoutOrderNestedInput
-    Feedback?: FeedbackUpdateManyWithoutOrderNestedInput
+    feedback?: FeedbackUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    total?: FloatFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableNumber?: IntFieldUpdateOperationsInput | number
+    round?: IntFieldUpdateOperationsInput | number
+    personNumber?: IntFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
-    Feedback?: FeedbackUncheckedUpdateManyWithoutOrderNestedInput
+    feedback?: FeedbackUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderCreateManyInput = {
     id?: string
-    total: number
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
   }
 
   export type OrderUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    total?: FloatFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableNumber?: IntFieldUpdateOperationsInput | number
+    round?: IntFieldUpdateOperationsInput | number
+    personNumber?: IntFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
   }
 
   export type OrderUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    total?: FloatFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableNumber?: IntFieldUpdateOperationsInput | number
+    round?: IntFieldUpdateOperationsInput | number
+    personNumber?: IntFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
   }
 
   export type OrderItemCreateInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
-    menuItem: MenuItemCreateNestedOneWithoutOrderItemInput
+    menuItem: MenuItemCreateNestedOneWithoutOrderItemsInput
     order: OrderCreateNestedOneWithoutItemsInput
   }
 
   export type OrderItemUncheckedCreateInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
     menuItemId: string
     orderId: string
@@ -5900,13 +6002,17 @@ export namespace Prisma {
 
   export type OrderItemUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
-    menuItem?: MenuItemUpdateOneRequiredWithoutOrderItemNestedInput
+    menuItem?: MenuItemUpdateOneRequiredWithoutOrderItemsNestedInput
     order?: OrderUpdateOneRequiredWithoutItemsNestedInput
   }
 
   export type OrderItemUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
     menuItemId?: StringFieldUpdateOperationsInput | string
     orderId?: StringFieldUpdateOperationsInput | string
@@ -5914,6 +6020,8 @@ export namespace Prisma {
 
   export type OrderItemCreateManyInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
     menuItemId: string
     orderId: string
@@ -5921,11 +6029,15 @@ export namespace Prisma {
 
   export type OrderItemUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
   }
 
   export type OrderItemUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
     menuItemId?: StringFieldUpdateOperationsInput | string
     orderId?: StringFieldUpdateOperationsInput | string
@@ -5933,63 +6045,63 @@ export namespace Prisma {
 
   export type FeedbackCreateInput = {
     id?: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
     menuItem: MenuItemCreateNestedOneWithoutFeedbackInput
     order: OrderCreateNestedOneWithoutFeedbackInput
   }
 
   export type FeedbackUncheckedCreateInput = {
     id?: string
-    menuItemId: string
-    orderId: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
+    menuItemId: string
+    orderId: string
   }
 
   export type FeedbackUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     menuItem?: MenuItemUpdateOneRequiredWithoutFeedbackNestedInput
     order?: OrderUpdateOneRequiredWithoutFeedbackNestedInput
   }
 
   export type FeedbackUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    menuItemId?: StringFieldUpdateOperationsInput | string
-    orderId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menuItemId?: StringFieldUpdateOperationsInput | string
+    orderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedbackCreateManyInput = {
     id?: string
-    menuItemId: string
-    orderId: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
+    menuItemId: string
+    orderId: string
   }
 
   export type FeedbackUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FeedbackUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    menuItemId?: StringFieldUpdateOperationsInput | string
-    orderId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menuItemId?: StringFieldUpdateOperationsInput | string
+    orderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6007,6 +6119,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -6021,17 +6144,6 @@ export namespace Prisma {
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type OrderItemListRelationFilter = {
@@ -6056,6 +6168,8 @@ export namespace Prisma {
 
   export type MenuItemCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     name?: SortOrder
     description?: SortOrder
     price?: SortOrder
@@ -6067,8 +6181,6 @@ export namespace Prisma {
     nutFree?: SortOrder
     dairyFree?: SortOrder
     spicy?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type MenuItemAvgOrderByAggregateInput = {
@@ -6077,6 +6189,8 @@ export namespace Prisma {
 
   export type MenuItemMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     name?: SortOrder
     description?: SortOrder
     price?: SortOrder
@@ -6088,12 +6202,12 @@ export namespace Prisma {
     nutFree?: SortOrder
     dairyFree?: SortOrder
     spicy?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type MenuItemMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     name?: SortOrder
     description?: SortOrder
     price?: SortOrder
@@ -6105,8 +6219,6 @@ export namespace Prisma {
     nutFree?: SortOrder
     dairyFree?: SortOrder
     spicy?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type MenuItemSumOrderByAggregateInput = {
@@ -6129,6 +6241,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -6155,52 +6281,6 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type OrderCountOrderByAggregateInput = {
-    id?: SortOrder
-    total?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type OrderAvgOrderByAggregateInput = {
-    total?: SortOrder
-  }
-
-  export type OrderMaxOrderByAggregateInput = {
-    id?: SortOrder
-    total?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type OrderMinOrderByAggregateInput = {
-    id?: SortOrder
-    total?: SortOrder
-    status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type OrderSumOrderByAggregateInput = {
-    total?: SortOrder
-  }
-
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -6212,43 +6292,48 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type MenuItemRelationFilter = {
-    is?: MenuItemWhereInput
-    isNot?: MenuItemWhereInput
-  }
-
-  export type OrderRelationFilter = {
-    is?: OrderWhereInput
-    isNot?: OrderWhereInput
-  }
-
-  export type OrderItemCountOrderByAggregateInput = {
+  export type OrderCountOrderByAggregateInput = {
     id?: SortOrder
-    quantity?: SortOrder
-    menuItemId?: SortOrder
-    orderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tableNumber?: SortOrder
+    round?: SortOrder
+    personNumber?: SortOrder
+    total?: SortOrder
   }
 
-  export type OrderItemAvgOrderByAggregateInput = {
-    quantity?: SortOrder
+  export type OrderAvgOrderByAggregateInput = {
+    tableNumber?: SortOrder
+    round?: SortOrder
+    personNumber?: SortOrder
+    total?: SortOrder
   }
 
-  export type OrderItemMaxOrderByAggregateInput = {
+  export type OrderMaxOrderByAggregateInput = {
     id?: SortOrder
-    quantity?: SortOrder
-    menuItemId?: SortOrder
-    orderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tableNumber?: SortOrder
+    round?: SortOrder
+    personNumber?: SortOrder
+    total?: SortOrder
   }
 
-  export type OrderItemMinOrderByAggregateInput = {
+  export type OrderMinOrderByAggregateInput = {
     id?: SortOrder
-    quantity?: SortOrder
-    menuItemId?: SortOrder
-    orderId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tableNumber?: SortOrder
+    round?: SortOrder
+    personNumber?: SortOrder
+    total?: SortOrder
   }
 
-  export type OrderItemSumOrderByAggregateInput = {
-    quantity?: SortOrder
+  export type OrderSumOrderByAggregateInput = {
+    tableNumber?: SortOrder
+    round?: SortOrder
+    personNumber?: SortOrder
+    total?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -6265,6 +6350,51 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type MenuItemRelationFilter = {
+    is?: MenuItemWhereInput
+    isNot?: MenuItemWhereInput
+  }
+
+  export type OrderRelationFilter = {
+    is?: OrderWhereInput
+    isNot?: OrderWhereInput
+  }
+
+  export type OrderItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    quantity?: SortOrder
+    menuItemId?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type OrderItemAvgOrderByAggregateInput = {
+    quantity?: SortOrder
+  }
+
+  export type OrderItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    quantity?: SortOrder
+    menuItemId?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type OrderItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    quantity?: SortOrder
+    menuItemId?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type OrderItemSumOrderByAggregateInput = {
+    quantity?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -6289,11 +6419,11 @@ export namespace Prisma {
 
   export type FeedbackCountOrderByAggregateInput = {
     id?: SortOrder
-    menuItemId?: SortOrder
-    orderId?: SortOrder
+    createdAt?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
-    createdAt?: SortOrder
+    menuItemId?: SortOrder
+    orderId?: SortOrder
   }
 
   export type FeedbackAvgOrderByAggregateInput = {
@@ -6302,20 +6432,20 @@ export namespace Prisma {
 
   export type FeedbackMaxOrderByAggregateInput = {
     id?: SortOrder
-    menuItemId?: SortOrder
-    orderId?: SortOrder
+    createdAt?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
-    createdAt?: SortOrder
+    menuItemId?: SortOrder
+    orderId?: SortOrder
   }
 
   export type FeedbackMinOrderByAggregateInput = {
     id?: SortOrder
-    menuItemId?: SortOrder
-    orderId?: SortOrder
+    createdAt?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
-    createdAt?: SortOrder
+    menuItemId?: SortOrder
+    orderId?: SortOrder
   }
 
   export type FeedbackSumOrderByAggregateInput = {
@@ -6372,6 +6502,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -6382,10 +6516,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type OrderItemUpdateManyWithoutMenuItemNestedInput = {
@@ -6472,6 +6602,14 @@ export namespace Prisma {
     connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type OrderItemUpdateManyWithoutOrderNestedInput = {
     create?: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput> | OrderItemCreateWithoutOrderInput[] | OrderItemUncheckedCreateWithoutOrderInput[]
     connectOrCreate?: OrderItemCreateOrConnectWithoutOrderInput | OrderItemCreateOrConnectWithoutOrderInput[]
@@ -6528,9 +6666,9 @@ export namespace Prisma {
     deleteMany?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
   }
 
-  export type MenuItemCreateNestedOneWithoutOrderItemInput = {
-    create?: XOR<MenuItemCreateWithoutOrderItemInput, MenuItemUncheckedCreateWithoutOrderItemInput>
-    connectOrCreate?: MenuItemCreateOrConnectWithoutOrderItemInput
+  export type MenuItemCreateNestedOneWithoutOrderItemsInput = {
+    create?: XOR<MenuItemCreateWithoutOrderItemsInput, MenuItemUncheckedCreateWithoutOrderItemsInput>
+    connectOrCreate?: MenuItemCreateOrConnectWithoutOrderItemsInput
     connect?: MenuItemWhereUniqueInput
   }
 
@@ -6540,20 +6678,12 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type MenuItemUpdateOneRequiredWithoutOrderItemNestedInput = {
-    create?: XOR<MenuItemCreateWithoutOrderItemInput, MenuItemUncheckedCreateWithoutOrderItemInput>
-    connectOrCreate?: MenuItemCreateOrConnectWithoutOrderItemInput
-    upsert?: MenuItemUpsertWithoutOrderItemInput
+  export type MenuItemUpdateOneRequiredWithoutOrderItemsNestedInput = {
+    create?: XOR<MenuItemCreateWithoutOrderItemsInput, MenuItemUncheckedCreateWithoutOrderItemsInput>
+    connectOrCreate?: MenuItemCreateOrConnectWithoutOrderItemsInput
+    upsert?: MenuItemUpsertWithoutOrderItemsInput
     connect?: MenuItemWhereUniqueInput
-    update?: XOR<XOR<MenuItemUpdateToOneWithWhereWithoutOrderItemInput, MenuItemUpdateWithoutOrderItemInput>, MenuItemUncheckedUpdateWithoutOrderItemInput>
+    update?: XOR<XOR<MenuItemUpdateToOneWithWhereWithoutOrderItemsInput, MenuItemUpdateWithoutOrderItemsInput>, MenuItemUncheckedUpdateWithoutOrderItemsInput>
   }
 
   export type OrderUpdateOneRequiredWithoutItemsNestedInput = {
@@ -6610,6 +6740,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -6624,17 +6765,6 @@ export namespace Prisma {
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -6665,6 +6795,20 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -6687,20 +6831,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -6763,12 +6893,16 @@ export namespace Prisma {
 
   export type OrderItemCreateWithoutMenuItemInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
     order: OrderCreateNestedOneWithoutItemsInput
   }
 
   export type OrderItemUncheckedCreateWithoutMenuItemInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
     orderId: string
   }
@@ -6785,18 +6919,18 @@ export namespace Prisma {
 
   export type FeedbackCreateWithoutMenuItemInput = {
     id?: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
     order: OrderCreateNestedOneWithoutFeedbackInput
   }
 
   export type FeedbackUncheckedCreateWithoutMenuItemInput = {
     id?: string
-    orderId: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
+    orderId: string
   }
 
   export type FeedbackCreateOrConnectWithoutMenuItemInput = {
@@ -6830,6 +6964,8 @@ export namespace Prisma {
     OR?: OrderItemScalarWhereInput[]
     NOT?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
     id?: StringFilter<"OrderItem"> | string
+    createdAt?: DateTimeFilter<"OrderItem"> | Date | string
+    updatedAt?: DateTimeFilter<"OrderItem"> | Date | string
     quantity?: IntFilter<"OrderItem"> | number
     menuItemId?: StringFilter<"OrderItem"> | string
     orderId?: StringFilter<"OrderItem"> | string
@@ -6856,21 +6992,25 @@ export namespace Prisma {
     OR?: FeedbackScalarWhereInput[]
     NOT?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
     id?: StringFilter<"Feedback"> | string
-    menuItemId?: StringFilter<"Feedback"> | string
-    orderId?: StringFilter<"Feedback"> | string
+    createdAt?: DateTimeFilter<"Feedback"> | Date | string
     rating?: IntFilter<"Feedback"> | number
     comment?: StringNullableFilter<"Feedback"> | string | null
-    createdAt?: DateTimeFilter<"Feedback"> | Date | string
+    menuItemId?: StringFilter<"Feedback"> | string
+    orderId?: StringFilter<"Feedback"> | string
   }
 
   export type OrderItemCreateWithoutOrderInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
-    menuItem: MenuItemCreateNestedOneWithoutOrderItemInput
+    menuItem: MenuItemCreateNestedOneWithoutOrderItemsInput
   }
 
   export type OrderItemUncheckedCreateWithoutOrderInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
     menuItemId: string
   }
@@ -6887,18 +7027,18 @@ export namespace Prisma {
 
   export type FeedbackCreateWithoutOrderInput = {
     id?: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
     menuItem: MenuItemCreateNestedOneWithoutFeedbackInput
   }
 
   export type FeedbackUncheckedCreateWithoutOrderInput = {
     id?: string
-    menuItemId: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
+    menuItemId: string
   }
 
   export type FeedbackCreateOrConnectWithoutOrderInput = {
@@ -6943,8 +7083,10 @@ export namespace Prisma {
     data: XOR<FeedbackUpdateManyMutationInput, FeedbackUncheckedUpdateManyWithoutOrderInput>
   }
 
-  export type MenuItemCreateWithoutOrderItemInput = {
+  export type MenuItemCreateWithoutOrderItemsInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     description: string
     price: number
@@ -6956,13 +7098,13 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Feedback?: FeedbackCreateNestedManyWithoutMenuItemInput
+    feedback?: FeedbackCreateNestedManyWithoutMenuItemInput
   }
 
-  export type MenuItemUncheckedCreateWithoutOrderItemInput = {
+  export type MenuItemUncheckedCreateWithoutOrderItemsInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     description: string
     price: number
@@ -6974,32 +7116,34 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Feedback?: FeedbackUncheckedCreateNestedManyWithoutMenuItemInput
+    feedback?: FeedbackUncheckedCreateNestedManyWithoutMenuItemInput
   }
 
-  export type MenuItemCreateOrConnectWithoutOrderItemInput = {
+  export type MenuItemCreateOrConnectWithoutOrderItemsInput = {
     where: MenuItemWhereUniqueInput
-    create: XOR<MenuItemCreateWithoutOrderItemInput, MenuItemUncheckedCreateWithoutOrderItemInput>
+    create: XOR<MenuItemCreateWithoutOrderItemsInput, MenuItemUncheckedCreateWithoutOrderItemsInput>
   }
 
   export type OrderCreateWithoutItemsInput = {
     id?: string
-    total: number
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    Feedback?: FeedbackCreateNestedManyWithoutOrderInput
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
+    feedback?: FeedbackCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutItemsInput = {
     id?: string
-    total: number
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    Feedback?: FeedbackUncheckedCreateNestedManyWithoutOrderInput
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
+    feedback?: FeedbackUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutItemsInput = {
@@ -7007,19 +7151,21 @@ export namespace Prisma {
     create: XOR<OrderCreateWithoutItemsInput, OrderUncheckedCreateWithoutItemsInput>
   }
 
-  export type MenuItemUpsertWithoutOrderItemInput = {
-    update: XOR<MenuItemUpdateWithoutOrderItemInput, MenuItemUncheckedUpdateWithoutOrderItemInput>
-    create: XOR<MenuItemCreateWithoutOrderItemInput, MenuItemUncheckedCreateWithoutOrderItemInput>
+  export type MenuItemUpsertWithoutOrderItemsInput = {
+    update: XOR<MenuItemUpdateWithoutOrderItemsInput, MenuItemUncheckedUpdateWithoutOrderItemsInput>
+    create: XOR<MenuItemCreateWithoutOrderItemsInput, MenuItemUncheckedCreateWithoutOrderItemsInput>
     where?: MenuItemWhereInput
   }
 
-  export type MenuItemUpdateToOneWithWhereWithoutOrderItemInput = {
+  export type MenuItemUpdateToOneWithWhereWithoutOrderItemsInput = {
     where?: MenuItemWhereInput
-    data: XOR<MenuItemUpdateWithoutOrderItemInput, MenuItemUncheckedUpdateWithoutOrderItemInput>
+    data: XOR<MenuItemUpdateWithoutOrderItemsInput, MenuItemUncheckedUpdateWithoutOrderItemsInput>
   }
 
-  export type MenuItemUpdateWithoutOrderItemInput = {
+  export type MenuItemUpdateWithoutOrderItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
@@ -7031,13 +7177,13 @@ export namespace Prisma {
     nutFree?: BoolFieldUpdateOperationsInput | boolean
     dairyFree?: BoolFieldUpdateOperationsInput | boolean
     spicy?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Feedback?: FeedbackUpdateManyWithoutMenuItemNestedInput
+    feedback?: FeedbackUpdateManyWithoutMenuItemNestedInput
   }
 
-  export type MenuItemUncheckedUpdateWithoutOrderItemInput = {
+  export type MenuItemUncheckedUpdateWithoutOrderItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
@@ -7049,9 +7195,7 @@ export namespace Prisma {
     nutFree?: BoolFieldUpdateOperationsInput | boolean
     dairyFree?: BoolFieldUpdateOperationsInput | boolean
     spicy?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Feedback?: FeedbackUncheckedUpdateManyWithoutMenuItemNestedInput
+    feedback?: FeedbackUncheckedUpdateManyWithoutMenuItemNestedInput
   }
 
   export type OrderUpsertWithoutItemsInput = {
@@ -7067,24 +7211,30 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    total?: FloatFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Feedback?: FeedbackUpdateManyWithoutOrderNestedInput
+    tableNumber?: IntFieldUpdateOperationsInput | number
+    round?: IntFieldUpdateOperationsInput | number
+    personNumber?: IntFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    feedback?: FeedbackUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    total?: FloatFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Feedback?: FeedbackUncheckedUpdateManyWithoutOrderNestedInput
+    tableNumber?: IntFieldUpdateOperationsInput | number
+    round?: IntFieldUpdateOperationsInput | number
+    personNumber?: IntFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    feedback?: FeedbackUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type MenuItemCreateWithoutFeedbackInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     description: string
     price: number
@@ -7096,13 +7246,13 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    OrderItem?: OrderItemCreateNestedManyWithoutMenuItemInput
+    orderItems?: OrderItemCreateNestedManyWithoutMenuItemInput
   }
 
   export type MenuItemUncheckedCreateWithoutFeedbackInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     name: string
     description: string
     price: number
@@ -7114,9 +7264,7 @@ export namespace Prisma {
     nutFree?: boolean
     dairyFree?: boolean
     spicy?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    OrderItem?: OrderItemUncheckedCreateNestedManyWithoutMenuItemInput
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutMenuItemInput
   }
 
   export type MenuItemCreateOrConnectWithoutFeedbackInput = {
@@ -7126,19 +7274,23 @@ export namespace Prisma {
 
   export type OrderCreateWithoutFeedbackInput = {
     id?: string
-    total: number
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
     items?: OrderItemCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutFeedbackInput = {
     id?: string
-    total: number
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    tableNumber: number
+    round: number
+    personNumber: number
+    total: number
     items?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
   }
 
@@ -7160,6 +7312,8 @@ export namespace Prisma {
 
   export type MenuItemUpdateWithoutFeedbackInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
@@ -7171,13 +7325,13 @@ export namespace Prisma {
     nutFree?: BoolFieldUpdateOperationsInput | boolean
     dairyFree?: BoolFieldUpdateOperationsInput | boolean
     spicy?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    OrderItem?: OrderItemUpdateManyWithoutMenuItemNestedInput
+    orderItems?: OrderItemUpdateManyWithoutMenuItemNestedInput
   }
 
   export type MenuItemUncheckedUpdateWithoutFeedbackInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
@@ -7189,9 +7343,7 @@ export namespace Prisma {
     nutFree?: BoolFieldUpdateOperationsInput | boolean
     dairyFree?: BoolFieldUpdateOperationsInput | boolean
     spicy?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    OrderItem?: OrderItemUncheckedUpdateManyWithoutMenuItemNestedInput
+    orderItems?: OrderItemUncheckedUpdateManyWithoutMenuItemNestedInput
   }
 
   export type OrderUpsertWithoutFeedbackInput = {
@@ -7207,132 +7359,152 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutFeedbackInput = {
     id?: StringFieldUpdateOperationsInput | string
-    total?: FloatFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableNumber?: IntFieldUpdateOperationsInput | number
+    round?: IntFieldUpdateOperationsInput | number
+    personNumber?: IntFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
     items?: OrderItemUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutFeedbackInput = {
     id?: StringFieldUpdateOperationsInput | string
-    total?: FloatFieldUpdateOperationsInput | number
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableNumber?: IntFieldUpdateOperationsInput | number
+    round?: IntFieldUpdateOperationsInput | number
+    personNumber?: IntFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderItemCreateManyMenuItemInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
     orderId: string
   }
 
   export type FeedbackCreateManyMenuItemInput = {
     id?: string
-    orderId: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
+    orderId: string
   }
 
   export type OrderItemUpdateWithoutMenuItemInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
     order?: OrderUpdateOneRequiredWithoutItemsNestedInput
   }
 
   export type OrderItemUncheckedUpdateWithoutMenuItemInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
     orderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderItemUncheckedUpdateManyWithoutMenuItemInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
     orderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedbackUpdateWithoutMenuItemInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     order?: OrderUpdateOneRequiredWithoutFeedbackNestedInput
   }
 
   export type FeedbackUncheckedUpdateWithoutMenuItemInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedbackUncheckedUpdateManyWithoutMenuItemInput = {
     id?: StringFieldUpdateOperationsInput | string
-    orderId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderId?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderItemCreateManyOrderInput = {
     id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     quantity: number
     menuItemId: string
   }
 
   export type FeedbackCreateManyOrderInput = {
     id?: string
-    menuItemId: string
+    createdAt?: Date | string
     rating: number
     comment?: string | null
-    createdAt?: Date | string
+    menuItemId: string
   }
 
   export type OrderItemUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
-    menuItem?: MenuItemUpdateOneRequiredWithoutOrderItemNestedInput
+    menuItem?: MenuItemUpdateOneRequiredWithoutOrderItemsNestedInput
   }
 
   export type OrderItemUncheckedUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
     menuItemId?: StringFieldUpdateOperationsInput | string
   }
 
   export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     quantity?: IntFieldUpdateOperationsInput | number
     menuItemId?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedbackUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     menuItem?: MenuItemUpdateOneRequiredWithoutFeedbackNestedInput
   }
 
   export type FeedbackUncheckedUpdateWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    menuItemId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menuItemId?: StringFieldUpdateOperationsInput | string
   }
 
   export type FeedbackUncheckedUpdateManyWithoutOrderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    menuItemId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    menuItemId?: StringFieldUpdateOperationsInput | string
   }
 
 

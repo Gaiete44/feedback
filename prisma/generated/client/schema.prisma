@@ -1,4 +1,5 @@
 // prisma/schema.prisma
+
 generator client {
   provider = "prisma-client-js"
   output   = "./generated/client"
@@ -10,36 +11,41 @@ datasource db {
 }
 
 model MenuItem {
-  id          String      @id @default(cuid())
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   name        String
   description String
   price       Float
   category    String
   image       String
-  vegan       Boolean     @default(false)
-  vegetarian  Boolean     @default(false)
-  glutenFree  Boolean     @default(false)
-  nutFree     Boolean     @default(false)
-  dairyFree   Boolean     @default(false)
-  spicy       Boolean     @default(false)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  OrderItem   OrderItem[]
-  Feedback    Feedback[]
+  vegan       Boolean  @default(false)
+  vegetarian  Boolean  @default(false)
+  glutenFree  Boolean  @default(false)
+  nutFree     Boolean  @default(false)
+  dairyFree   Boolean  @default(false)
+  spicy       Boolean  @default(false)
+
+  orderItems OrderItem[]
+  feedback   Feedback[]
 }
 
 model Order {
-  id        String      @id @default(cuid())
-  items     OrderItem[]
-  total     Float
-  status    String      @default("pending")
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  Feedback  Feedback[]
+  id           String      @id @default(cuid())
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  tableNumber  Int
+  round        Int
+  personNumber Int
+  total        Float
+  items        OrderItem[]
+  feedback     Feedback[]
 }
 
 model OrderItem {
   id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   quantity   Int
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
   menuItemId String
@@ -49,11 +55,11 @@ model OrderItem {
 
 model Feedback {
   id         String   @id @default(cuid())
-  menuItemId String
-  orderId    String
+  createdAt  DateTime @default(now())
   rating     Int
   comment    String?
-  createdAt  DateTime @default(now())
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  menuItemId String
   order      Order    @relation(fields: [orderId], references: [id])
+  orderId    String
 }

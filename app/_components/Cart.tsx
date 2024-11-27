@@ -3,16 +3,59 @@
 
 import * as Dialog from '@radix-ui/react-dialog';
 import { useCart } from '../_context/CardContext';
+import { useTable } from '../_context/TableContext';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-export const Cart: React.FC = () => {
+export const Cart = () => {
   const { items, total, removeFromCart, clearCart } = useCart();
+  const { tableNumber, numberOfPeople, currentRound } = useTable();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [ordersInRound, setOrdersInRound] = useState(0);
+  const maxOrdersForTable = (numberOfPeople || 0) * 3;
 
-  const handleCheckout = async () => {
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchOrderCount = async () => {
+      if (!tableNumber || !currentRound) return;
+
+      try {
+        const response = await fetch(`/api/orders/count?tableNumber=${tableNumber}&round=${currentRound}`);
+        if (!response.ok) throw new Error('Failed to fetch order count');
+        const data = await response.json();
+        
+        if (isMounted) {
+          setOrdersInRound(data.count || 0);
+        }
+      } catch (error) {
+        console.error('Error fetching order count:', error);
+        if (isMounted) {
+          setOrdersInRound(0);
+        }
+      }
+    };
+
+    fetchOrderCount();
+  }, [tableNumber, currentRound]);
+
+  const remainingOrders = maxOrdersForTable - ordersInRound;
+  const canOrder = items.length <= remainingOrders;
+
+  const handleOrder = async () => {
+    if (!tableNumber || !currentRound) {
+      setError('Invalid table or round information');
+      return;
+    }
+
+    if (!canOrder) {
+      setError(`Maximum orders reached for this round (${maxOrdersForTable} dishes total)`);
+      return;
+    }
+
     setIsLoading(true);
     try {
       const response = await fetch('/api/orders', {
@@ -25,15 +68,22 @@ export const Cart: React.FC = () => {
             menuItemId: item.id,
             quantity: item.quantity
           })),
-          total
+          total,
+          tableNumber,
+          round: currentRound
         }),
       });
       
-      const order = await response.json();
+      if (!response.ok) {
+        throw new Error('Failed to place order');
+      }
+
       clearCart();
-      router.push(`/feedback/${order.id}`);
+      setError(null);
+      router.refresh();
     } catch (error) {
-      console.error('Checkout failed:', error);
+      console.error('Order failed:', error);
+      setError('Failed to place order. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -57,12 +107,14 @@ export const Cart: React.FC = () => {
           
           {items.length > 0 ? (
             <>
+              <div className="mb-4 p-3 bg-blue-50 text-blue-600 rounded-md text-sm">
+                <p>Orders this round: {ordersInRound} / {maxOrdersForTable}</p>
+                <p>You can add {Math.max(0, remainingOrders)} more dishes</p>
+              </div>
+
               <div className="space-y-4 mb-6">
                 {items.map((item) => (
-                  <div 
-                    key={item.id} 
-                    className="flex items-center gap-4 bg-white p-4 rounded-lg shadow-sm border-l-4 border-terracotta-600"
-                  >
+                  <div key={item.id} className="flex items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
                     <div className="relative h-16 w-16 flex-shrink-0">
                       <Image
                         src={item.image}
@@ -92,19 +144,31 @@ export const Cart: React.FC = () => {
                 ))}
               </div>
 
-              <div className="border-t border-gray-200 pt-4 mt-6">
+              {error && (
+                <div className="mb-4 p-3 bg-red-100 text-red-600 rounded-md text-sm">
+                  {error}
+                </div>
+              )}
+
+              <div className="border-t border-gray-200 pt-4">
                 <div className="flex justify-between items-center mb-6">
                   <span className="font-joti text-xl text-gray-800">Total:</span>
                   <span className="font-joti text-xl text-terracotta-600">${total.toFixed(2)}</span>
                 </div>
 
                 <button
-                  onClick={handleCheckout}
-                  disabled={isLoading}
+                  onClick={handleOrder}
+                  disabled={isLoading || !canOrder || remainingOrders < 0}
                   className="w-full bg-jade-600 text-white py-3 rounded-full hover:bg-jade-700 transition-colors disabled:opacity-50 font-joti text-lg"
                 >
-                  {isLoading ? 'Processing...' : 'Checkout'}
+                  {isLoading ? 'Processing...' : 'Place Order'}
                 </button>
+
+                {remainingOrders < 0 && (
+                  <p className="text-sm text-red-500 text-center mt-2">
+                    Order limit reached for this round
+                  </p>
+                )}
               </div>
             </>
           ) : (

@@ -124,6 +124,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.MenuItemScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   name: 'name',
   description: 'description',
   price: 'price',
@@ -134,21 +136,23 @@ exports.Prisma.MenuItemScalarFieldEnum = {
   glutenFree: 'glutenFree',
   nutFree: 'nutFree',
   dairyFree: 'dairyFree',
-  spicy: 'spicy',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  spicy: 'spicy'
 };
 
 exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
-  total: 'total',
-  status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  tableNumber: 'tableNumber',
+  round: 'round',
+  personNumber: 'personNumber',
+  total: 'total'
 };
 
 exports.Prisma.OrderItemScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   quantity: 'quantity',
   menuItemId: 'menuItemId',
   orderId: 'orderId'
@@ -156,11 +160,11 @@ exports.Prisma.OrderItemScalarFieldEnum = {
 
 exports.Prisma.FeedbackScalarFieldEnum = {
   id: 'id',
-  menuItemId: 'menuItemId',
-  orderId: 'orderId',
+  createdAt: 'createdAt',
   rating: 'rating',
   comment: 'comment',
-  createdAt: 'createdAt'
+  menuItemId: 'menuItemId',
+  orderId: 'orderId'
 };
 
 exports.Prisma.SortOrder = {
