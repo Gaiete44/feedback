@@ -3,81 +3,49 @@ import { prisma } from '@/app/_lib/db';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
-  const data = await request.json();
-  
   try {
-    // Validate round and orders per person
-    const existingOrders = await prisma.order.count({
-      where: {
-        tableNumber: data.tableNumber,
-        round: data.round,
-        personNumber: data.personNumber
-      }
-    });
+    const data = await request.json();
 
-    if (existingOrders >= 3) {
+    // Validate the incoming data
+    if (!data.tableNumber || !data.round || !Array.isArray(data.items)) {
       return NextResponse.json(
-        { error: 'Maximum orders reached for this person in current round' }, 
+        { error: 'Invalid order data' },
         { status: 400 }
       );
     }
 
+    // Create the order with all its items
     const order = await prisma.order.create({
       data: {
-        tableNumber: data.tableNumber,
-        round: data.round,
-        personNumber: data.personNumber,
-        total: data.total,
+        tableNumber: parseInt(data.tableNumber),
+        round: parseInt(data.round),
+        total: parseFloat(data.total),
         items: {
-          create: data.items.map((item: { menuItemId: string; quantity: number }) => ({
+          create: data.items.map((item: { menuItemId: string }) => ({
             menuItemId: item.menuItemId,
-            quantity: item.quantity
+            quantity: 1
           }))
         }
       }
     });
-    
-    return NextResponse.json(order);
-  } catch (error) {
-    console.error('Order creation error:', error);
-    return NextResponse.json({ error: 'Failed to create order' }, { status: 500 });
-  }
-}
 
-// Get orders for a specific table and round
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const tableNumber = searchParams.get('tableNumber');
-  const round = searchParams.get('round');
-
-  if (!tableNumber || !round) {
-    return NextResponse.json(
-      { error: 'Table number and round are required' }, 
-      { status: 400 }
-    );
-  }
-
-  try {
-    const orders = await prisma.order.findMany({
-      where: {
-        tableNumber: parseInt(tableNumber),
-        round: parseInt(round)
+    return new NextResponse(JSON.stringify({ success: true, orderId: order.id }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
       },
-      include: {
-        items: {
-          include: {
-            menuItem: true
-          }
-        }
-      }
     });
 
-    return NextResponse.json(orders);
   } catch (error) {
-    console.error('Failed to fetch orders:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch orders' }, 
-      { status: 500 }
+    console.error('Error creating order:', error);
+    return new NextResponse(
+      JSON.stringify({ error: 'Failed to create order' }), 
+      { 
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
     );
   }
 }

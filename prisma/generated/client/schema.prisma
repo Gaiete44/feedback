@@ -1,5 +1,4 @@
 // prisma/schema.prisma
-
 generator client {
   provider = "prisma-client-js"
   output   = "./generated/client"
@@ -10,52 +9,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model MenuItem {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String
-  description String
-  price       Float
-  category    String
-  image       String
-  vegan       Boolean  @default(false)
-  vegetarian  Boolean  @default(false)
-  glutenFree  Boolean  @default(false)
-  nutFree     Boolean  @default(false)
-  dairyFree   Boolean  @default(false)
-  spicy       Boolean  @default(false)
-
-  orderItems OrderItem[]
-  feedback   Feedback[]
-}
-
 model Order {
-  id           String      @id @default(cuid())
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  tableNumber  Int
-  round        Int
-  personNumber Int
-  total        Float
-  items        OrderItem[]
-  feedback     Feedback[]
+  id          String      @id @default(cuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  tableNumber Int
+  round       Int
+  total       Float
+  items       OrderItem[]
+  feedback    Feedback[]
 }
 
 model OrderItem {
   id         String   @id @default(cuid())
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  quantity   Int
+  quantity   Int      @default(1)
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
   menuItemId String
   order      Order    @relation(fields: [orderId], references: [id])
   orderId    String
 }
 
+model MenuItem {
+  id          String      @id @default(cuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  name        String
+  description String
+  price       Float
+  category    String
+  image       String
+  vegan       Boolean     @default(false)
+  vegetarian  Boolean     @default(false)
+  glutenFree  Boolean     @default(false)
+  nutFree     Boolean     @default(false)
+  dairyFree   Boolean     @default(false)
+  spicy       Boolean     @default(false)
+  orderItems  OrderItem[]
+  feedback    Feedback[]
+}
+
 model Feedback {
   id         String   @id @default(cuid())
   createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
   rating     Int
   comment    String?
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])

@@ -122,6 +122,24 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  tableNumber: 'tableNumber',
+  round: 'round',
+  total: 'total'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  quantity: 'quantity',
+  menuItemId: 'menuItemId',
+  orderId: 'orderId'
+};
+
 exports.Prisma.MenuItemScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -139,28 +157,10 @@ exports.Prisma.MenuItemScalarFieldEnum = {
   spicy: 'spicy'
 };
 
-exports.Prisma.OrderScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  tableNumber: 'tableNumber',
-  round: 'round',
-  personNumber: 'personNumber',
-  total: 'total'
-};
-
-exports.Prisma.OrderItemScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  quantity: 'quantity',
-  menuItemId: 'menuItemId',
-  orderId: 'orderId'
-};
-
 exports.Prisma.FeedbackScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   rating: 'rating',
   comment: 'comment',
   menuItemId: 'menuItemId',
@@ -184,9 +184,9 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  MenuItem: 'MenuItem',
   Order: 'Order',
   OrderItem: 'OrderItem',
+  MenuItem: 'MenuItem',
   Feedback: 'Feedback'
 };
 

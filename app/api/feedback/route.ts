@@ -1,49 +1,54 @@
-// app/api/feedback/route.ts
+// app/api/orders/feedback/route.ts
 import { prisma } from '@/app/_lib/db';
 import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
-  const data = await request.json();
-  
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const tableNumber = parseInt(searchParams.get('tableNumber') || '0');
+  const round = parseInt(searchParams.get('round') || '0');
+
+  if (!tableNumber || !round) {
+    return NextResponse.json(
+      { error: 'Table number and round are required' },
+      { status: 400 }
+    );
+  }
+
   try {
-    // Find the order for this table, round, and menu item
-    const order = await prisma.order.findFirst({
+    // Get the previous round's orders for this table
+    const previousRound = round - 1;
+    
+    // If this is the first round, there's no feedback to give
+    if (previousRound < 1) {
+      return NextResponse.json([]);
+    }
+
+    const orders = await prisma.order.findMany({
       where: {
-        tableNumber: data.tableNumber,
-        round: data.round,
+        tableNumber: tableNumber,
+        round: previousRound
+      },
+      include: {
         items: {
-          some: {
-            menuItemId: data.menuItemId
+          include: {
+            menuItem: true
           }
         }
       }
     });
 
-    if (!order) {
+    if (!orders || orders.length === 0) {
       return NextResponse.json(
-        { error: 'Order not found' },
+        { error: 'No orders found for this table and round' },
         { status: 404 }
       );
     }
 
-    const feedback = await prisma.feedback.create({
-      data: {
-        menuItemId: data.menuItemId,
-        orderId: order.id,
-        rating: data.rating,
-        comment: data.comment
-      },
-      include: {
-        menuItem: true,
-        order: true
-      }
-    });
-
-    return NextResponse.json(feedback);
+    return NextResponse.json(orders);
   } catch (error) {
-    console.error('Feedback creation error:', error);
+    console.error('Failed to fetch orders:', error);
     return NextResponse.json(
-      { error: 'Failed to submit feedback' },
+      { error: 'Failed to fetch orders' },
       { status: 500 }
     );
   }

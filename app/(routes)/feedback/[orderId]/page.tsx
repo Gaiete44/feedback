@@ -1,8 +1,7 @@
-// app/(routes)/feedback/[orderId]/page.tsx
 'use client'
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useTable } from '@/app/_context/TableContext';
 
 interface MenuItem {
@@ -27,7 +26,6 @@ interface OrderItem {
 }
 
 export default function FeedbackPage() {
-  const params = useParams();
   const router = useRouter();
   const { tableNumber, currentRound, incrementRound } = useTable();
   
@@ -36,21 +34,33 @@ export default function FeedbackPage() {
   const [comments, setComments] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (!tableNumber || !currentRound) {
+      router.push('/');
+      return;
+    }
+
     const fetchOrders = async () => {
-      if (!tableNumber || !currentRound) return;
-      
       try {
-        const response = await fetch(`/api/orders?tableNumber=${tableNumber}&round=${currentRound}`);
-        if (!response.ok) throw new Error('Failed to fetch orders');
+        // Only fetch orders if we're past round 1
+        if (currentRound === 1) {
+          setOrderItems([]);
+          setIsLoading(false);
+          return;
+        }
+
+        const response = await fetch(`/api/orders/feedback?tableNumber=${tableNumber}&round=${currentRound}`);
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to fetch orders');
+        }
         
         const orders = await response.json();
         
-        // Combine all items from all orders in this round
+        // Create unique items array from all orders in this round
         const allItems = orders.flatMap((order: any) => order.items);
-        
-        // Create unique items array
         const uniqueItems = Array.from(
           new Set(allItems.map((item: OrderItem) => item.menuItemId))
         ).map(id => 
@@ -60,12 +70,14 @@ export default function FeedbackPage() {
         setOrderItems(uniqueItems);
       } catch (error) {
         console.error('Error fetching orders:', error);
-        setError('Failed to load order details');
+        setError(error instanceof Error ? error.message : 'Failed to load order details');
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchOrders();
-  }, [tableNumber, currentRound]);
+  }, [tableNumber, currentRound, router]);
 
   const handleRatingChange = (itemId: string, rating: number) => {
     setRatings(prev => ({ ...prev, [itemId]: rating }));
@@ -76,7 +88,14 @@ export default function FeedbackPage() {
   };
 
   const handleSubmit = async () => {
-    if (!tableNumber || orderItems.length === 0) return;
+    if (orderItems.length === 0) {
+      // If there are no items to rate (first round), just go to menu
+      if (currentRound === 1) {
+        router.push('/menu');
+        return;
+      }
+      return;
+    }
     
     setIsSubmitting(true);
     setError(null);
@@ -93,7 +112,7 @@ export default function FeedbackPage() {
             rating: ratings[item.menuItemId],
             comment: comments[item.menuItemId] || '',
             tableNumber,
-            round: currentRound
+            round: currentRound - 1 // Feedback is for the previous round
           })
         });
       });
@@ -114,10 +133,68 @@ export default function FeedbackPage() {
     }
   };
 
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="max-w-4xl mx-auto p-6 bg-warmWhite min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-terracotta-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading your order details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle first round case
+  if (currentRound === 1) {
+    return (
+      <div className="max-w-4xl mx-auto p-6 bg-warmWhite min-h-screen">
+        <h1 className="text-3xl font-joti text-terracotta-600 text-center mb-8">
+          Welcome to Round {currentRound}/5
+        </h1>
+        <p className="text-center text-gray-600 mb-8">
+          After you enjoy your first round of tapas, you'll be able to provide feedback here.
+        </p>
+        <button
+          onClick={() => router.push('/menu')}
+          className="mt-8 w-full bg-terracotta-600 text-white py-3 rounded-full hover:bg-terracotta-700 transition-colors font-joti text-xl"
+        >
+          Start Ordering
+        </button>
+      </div>
+    );
+  }
+
   if (error) {
     return (
       <div className="max-w-2xl mx-auto p-6">
         <div className="text-red-500 text-center p-4 font-joti">{error}</div>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-4 w-full bg-terracotta-600 text-white py-2 rounded-full hover:bg-terracotta-700 transition-colors"
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
+
+  // Show message if no orders found
+  if (orderItems.length === 0) {
+    return (
+      <div className="max-w-4xl mx-auto p-6 bg-warmWhite min-h-screen">
+        <h1 className="text-3xl font-joti text-terracotta-600 text-center mb-8">
+          No Orders Found
+        </h1>
+        <p className="text-center text-gray-600 mb-8">
+          We couldn't find any orders from your previous round. Would you like to continue to the menu?
+        </p>
+        <button
+          onClick={() => router.push('/menu')}
+          className="mt-8 w-full bg-terracotta-600 text-white py-3 rounded-full hover:bg-terracotta-700 transition-colors font-joti text-xl"
+        >
+          Go to Menu
+        </button>
       </div>
     );
   }
