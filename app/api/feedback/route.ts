@@ -15,6 +15,7 @@ export async function GET(request: Request) {
   }
 
   try {
+<<<<<<< HEAD
     // Get the previous round's orders for this table
     const previousRound = round - 1;
     
@@ -51,5 +52,23 @@ export async function GET(request: Request) {
       { error: 'Failed to fetch orders' },
       { status: 500 }
     );
+=======
+    const feedback = await prisma.feedback.create({
+      data: {
+        menuItemId: data.menuItemId,
+        orderId: data.orderId,
+        rating: data.rating,
+        comment: data.comment
+      },
+      include: {
+        menuItem: true,
+        order: true
+      }
+    });
+    return NextResponse.json(feedback);
+  } catch (error) {
+    console.error('Feedback creation error:', error);
+    return NextResponse.json({ error: 'Failed to submit feedback' }, { status: 500 });
+>>>>>>> parent of a498088 (round system)
   }
 }

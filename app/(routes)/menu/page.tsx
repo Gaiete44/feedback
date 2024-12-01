@@ -2,14 +2,12 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { MenuCard } from '@/app/_components/MenuCard';
 import { CategoryTabs } from '@/app/_components/CategoryTabs';
 import { Cart } from '@/app/_components/Cart';
 import { MenuItem } from '@/app/_types/menu';
 import { getColorScheme } from '@/app/_lib/menuColors';
 import { DietaryLegend } from '@/app/_components/DietaryLegend';
-import { useTable } from '@/app/_context/TableContext';
 
 interface MenuItemWithDietary extends MenuItem {
   dietary: {
@@ -23,47 +21,13 @@ interface MenuItemWithDietary extends MenuItem {
 }
 
 export default function MenuPage() {
-  const router = useRouter();
-  const { tableNumber, numberOfPeople, currentRound, roundStartTime } = useTable();
   const [menuItems, setMenuItems] = useState<MenuItemWithDietary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('');
-  const [timeRemaining, setTimeRemaining] = useState<number>(0);
-
-  useEffect(() => {
-    if (!tableNumber || !numberOfPeople) {
-      router.push('/');
-    }
-  }, [tableNumber, numberOfPeople, router]);
-
-  useEffect(() => {
-    if (!roundStartTime) return;
-
-    const startTime = new Date(roundStartTime).getTime();
-    const roundDuration = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
-
-    const updateTimer = () => {
-      const now = new Date().getTime();
-      const elapsed = now - startTime;
-      const remaining = roundDuration - elapsed;
-
-      if (remaining <= 0) {
-        if (currentRound <= 5) {
-          router.push(`/feedback/${currentRound}`);
-        } else {
-          router.push('/thank-you');
-        }
-      } else {
-        setTimeRemaining(Math.floor(remaining / 1000));
-      }
-    };
-
-    const timer = setInterval(updateTimer, 1000);
-    updateTimer();
-
-    return () => clearInterval(timer);
-  }, [roundStartTime, currentRound, router]);
+  
+  const categories = [...new Set(menuItems.map(item => item.category))];
+  const colors = activeCategory ? getColorScheme(activeCategory) : getColorScheme('SPECIALTIES');
 
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -128,17 +92,9 @@ export default function MenuPage() {
     fetchMenuItems();
   }, [activeCategory]);
 
-  const categories = [...new Set(menuItems.map(item => item.category))];
   const filteredItems = activeCategory
     ? menuItems.filter(item => item.category === activeCategory)
     : menuItems;
-
-  const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
 
   if (error) {
     return (
@@ -147,7 +103,7 @@ export default function MenuPage() {
           <p className="text-xl font-joti text-gray-600 mb-4">{error}</p>
           <button 
             onClick={() => window.location.reload()} 
-            className={`${activeCategory ? getColorScheme(activeCategory).primary : 'bg-terracotta-600'} text-white px-6 py-2 rounded-full hover:bg-terracotta-700 transition-colors font-joti`}
+            className={`${colors.primary} text-white px-6 py-2 rounded-full ${colors.hover} transition-colors font-joti`}
           >
             Try Again
           </button>
@@ -157,27 +113,19 @@ export default function MenuPage() {
   }
 
   return (
-      <div className="min-h-screen bg-warmWhite">
-        <header className={`${activeCategory ? getColorScheme(activeCategory).primary : 'bg-terracotta-600'} text-white transition-colors duration-300`}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex justify-between items-center">
-              <div>
-                <h1 className="text-4xl font-joti text-white drop-shadow-lg">La Carta</h1>
-                <div className="mt-2 font-joti">
-                  <p className="text-xl text-white/90">
-                    Table {tableNumber} • Round {currentRound}/5
-                  </p>
-                  <p className="text-lg text-white/80">
-                    Time Remaining: {formatTime(timeRemaining)}
-                  </p>
-                  <p className="text-sm text-white/70">
-                    {numberOfPeople} {numberOfPeople === 1 ? 'person' : 'people'} • 3 dishes per person
-                  </p>
-                </div>
-              </div>
-              <Cart /> {/* Remove the maxDishesPerPerson prop */}
+    <div className="min-h-screen bg-warmWhite">
+      <header className={`${colors.primary} text-white transition-colors duration-300`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-4xl font-joti text-white drop-shadow-lg">La Carta</h1>
+              <p className="mt-2 font-joti text-xl text-white/90">
+                {activeCategory ? activeCategory.charAt(0) + activeCategory.slice(1).toLowerCase() : 'All Dishes'}
+              </p>
             </div>
+            <Cart />
           </div>
+        </div>
         
         <div className="mt-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -221,7 +169,7 @@ export default function MenuPage() {
       </main>
 
       <footer className="fixed bottom-0 left-0 w-full">
-        <div className={`h-1 ${activeCategory ? getColorScheme(activeCategory).accent : 'bg-terracotta-500'}`}></div>
+        <div className={`h-1 ${colors.accent}`}></div>
       </footer>
     </div>
   );

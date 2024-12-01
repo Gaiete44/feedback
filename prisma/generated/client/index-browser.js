@@ -142,8 +142,6 @@ exports.Prisma.OrderItemScalarFieldEnum = {
 
 exports.Prisma.MenuItemScalarFieldEnum = {
   id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   name: 'name',
   description: 'description',
   price: 'price',
@@ -154,17 +152,40 @@ exports.Prisma.MenuItemScalarFieldEnum = {
   glutenFree: 'glutenFree',
   nutFree: 'nutFree',
   dairyFree: 'dairyFree',
-  spicy: 'spicy'
+  spicy: 'spicy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
+<<<<<<< HEAD
 exports.Prisma.FeedbackScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  rating: 'rating',
-  comment: 'comment',
+=======
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  total: 'total',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  quantity: 'quantity',
   menuItemId: 'menuItemId',
   orderId: 'orderId'
+};
+
+exports.Prisma.FeedbackScalarFieldEnum = {
+  id: 'id',
+  menuItemId: 'menuItemId',
+  orderId: 'orderId',
+>>>>>>> parent of a498088 (round system)
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {

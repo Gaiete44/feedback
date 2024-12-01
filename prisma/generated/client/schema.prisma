@@ -9,6 +9,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+<<<<<<< HEAD
 model Order {
   id          String      @id @default(cuid())
   createdAt   DateTime    @default(now())
@@ -18,13 +19,46 @@ model Order {
   total       Float
   items       OrderItem[]
   feedback    Feedback[]
+=======
+model MenuItem {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  category    String
+  image       String
+  vegan       Boolean     @default(false)
+  vegetarian  Boolean     @default(false)
+  glutenFree  Boolean     @default(false)
+  nutFree     Boolean     @default(false)
+  dairyFree   Boolean     @default(false)
+  spicy       Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  OrderItem   OrderItem[]
+  Feedback    Feedback[]
+}
+
+model Order {
+  id        String      @id @default(cuid())
+  items     OrderItem[]
+  total     Float
+  status    String      @default("pending")
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Feedback  Feedback[]
+>>>>>>> parent of a498088 (round system)
 }
 
 model OrderItem {
   id         String   @id @default(cuid())
+<<<<<<< HEAD
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   quantity   Int      @default(1)
+=======
+  quantity   Int
+>>>>>>> parent of a498088 (round system)
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
   menuItemId String
   order      Order    @relation(fields: [orderId], references: [id])
@@ -52,12 +86,16 @@ model MenuItem {
 
 model Feedback {
   id         String   @id @default(cuid())
+<<<<<<< HEAD
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+=======
+  menuItemId String
+  orderId    String
+>>>>>>> parent of a498088 (round system)
   rating     Int
   comment    String?
+  createdAt  DateTime @default(now())
   menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
-  menuItemId String
   order      Order    @relation(fields: [orderId], references: [id])
-  orderId    String
 }

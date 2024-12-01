@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
+<<<<<<< HEAD
     const data = await request.json();
 
     // Validate the incoming data
@@ -20,6 +21,11 @@ export async function POST(request: Request) {
         tableNumber: parseInt(data.tableNumber),
         round: parseInt(data.round),
         total: parseFloat(data.total),
+=======
+    const order = await prisma.order.create({
+      data: {
+        total: data.total,
+>>>>>>> parent of a498088 (round system)
         items: {
           create: data.items.map((item: { menuItemId: string }) => ({
             menuItemId: item.menuItemId,
@@ -28,6 +34,7 @@ export async function POST(request: Request) {
         }
       }
     });
+<<<<<<< HEAD
 
     return new NextResponse(JSON.stringify({ success: true, orderId: order.id }), {
       status: 200,
@@ -47,5 +54,11 @@ export async function POST(request: Request) {
         },
       }
     );
+=======
+    return NextResponse.json(order);
+  } catch (error) {
+    console.error('Order creation error:', error);
+    return NextResponse.json({ error: 'Failed to create order' }, { status: 500 });
+>>>>>>> parent of a498088 (round system)
   }
 }
